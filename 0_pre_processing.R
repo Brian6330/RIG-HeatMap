@@ -22,14 +22,16 @@ library("lubridate")
 
 ### READ THE BICYCLE DATA (bicycle) ###
 
-bicycle <- read.csv(file = "Transekt1_2019.csv",
-                    stringsAsFactors = FALSE)
+bicycle <- read.csv(file = "./Raw Data/Transekt_Juni_2019/1.csv",
+                    stringsAsFactors = FALSE,
+                    skipNul=TRUE)
 
 ### generate timestamp CEST
 
 # add new column
-bicycle$TIMESTAMP_CEST <-  strptime(bicycle$TIMESTAMP, tz = "GMT"
-                                    , format = "%Y-%m-%d %H:%M:%S")
+bicycle$dateAndTime <- paste(bicycle$DATE,bicycle$TIME)
+bicycle$TIMESTAMP_CEST <-  strptime(bicycle$dateAndTime, tz = "GMT"
+                                    , format = "%y%m%d %H%M%S")
 # to POSIXct format
 bicycle$TIMESTAMP_CEST <- as.POSIXct(bicycle$TIMESTAMP_CEST, tz = "GMT")
 
