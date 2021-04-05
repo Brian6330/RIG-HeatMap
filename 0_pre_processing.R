@@ -122,11 +122,11 @@ cws_be_2019 <- cws_be_2019[cws_be_2019$time < "2019-06-27 16:00:00"
 
 
 #read logger measurements
-log <- read.csv(file = "Raw_Data/Loggerdaten_2019_JJA/Data_2019_compiled.csv",
+log <- read.csv(file = "Raw Data/Loggerdaten_2019_JJA/Data_2019_compiled.csv",
                 stringsAsFactors = FALSE)
 
 # read logger metadata
-log_meta <- read.csv2(file = "Raw_Data/Loggerdaten_2019_JJA/Standorte_2019_DEF.csv",
+log_meta <- read.csv2(file = "Raw Data/Loggerdaten_2019_JJA/Standorte_2019_DEF.csv",
                       header = TRUE, sep = ",", stringsAsFactors = F)
 
 
@@ -138,6 +138,9 @@ for(i in 2: length(log[1,])){
 
 
 # create timestamps for log
+
+#rename the col (is this just a difference in name or is this a wrong timestamp?)
+names(log)[names(log) == "ï..time"] <- "date_time_gmt_plus_2"
 
 # convert the two different time formats to the same one (differentiate them by string length using "nchar")
 for (i in 1:length(log$date_time_gmt_plus_2)){
@@ -152,8 +155,25 @@ for (i in 1:length(log$date_time_gmt_plus_2)){
                                                           ,"00"," ",substr(log$date_time_gmt_plus_2[i],19,20), sep = ""))}
 }
 
+#change vo/na to am/pm
+#for (i in 1:length(log$date_time_gmt_plus_2)){
+#  if(substr(log$date_time_gmt_plus_2[i],21,22)=="vo"){
+#    log$date_time_gmt_plus_2[i] <- as.character(paste(substr(log$date_time_gmt_plus_2[1],0,20),"AM"))   
+#  }
+#  else{
+#    log$date_time_gmt_plus_2[i] <- as.character(paste(substr(log$date_time_gmt_plus_2[1],0,20),"PM"))
+#  }
+#}
 
-log$date_time_gmt_plus_2 <- strptime(log$date_time_gmt_plus_2, "%Y-%m-%d %I:%M:%S %p",tz = "Europe/Zurich") # convert to POSIXlt
+#Problem: See: https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/strptime
+# Doc für %p:
+# %p
+#AM/PM indicator in the locale. Used in conjunction with %I and not with %H. 
+#An empty string in some locales (for example on some OSes, non-English European locales including Russia).
+#The behaviour is undefined if used for input in such a locale.
+
+#--> how to convert in a german locale?
+log$date_time_gmt_plus_2test <- strptime(log$date_time_gmt_plus_2, "%Y-%m-%d %I:%M:%S %p",tz = "Europe/Zurich") # convert to POSIXlt
 
 
 
