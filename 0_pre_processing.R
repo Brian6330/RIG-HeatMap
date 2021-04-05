@@ -70,7 +70,7 @@ bicycle$TIMESTAMP_CEST <- with_tz(bicycle$TIMESTAMP_CEST, "Europe/Berlin")
 
 
 #read temperature time series of individual stations
-cws_be_2019 <- read.csv(file = "Raw_Data/Netatmo_Daten/cws_bern_ta_level_o1_2019_JJA_UTM/cws_bern_ta_level_o1_2019_JJA_UTM.csv",
+cws_be_2019 <- read.csv(file = "Raw Data/Netatmo_Data/cws_bern_ta_level_o1_2019_JJA_UTM.csv",
                         sep = ",",
                         na.strings = "NAN")
 
@@ -111,8 +111,8 @@ attributes(cws_be_2019$time)$tzone; cws_be_2019$time[1:10] # time zone is CEST =
 
 # only keep cws files from the time period of the bicycle transect time
 # this changes the format of the "time" column. Should be ok, but be aware
-cws_be_2019 <- cws_be_2019[cws_be_2019$time < "2019-06-27 00:00:00" 
-                           & cws_be_2019$time >= "2019-06-26 00:00:00",]
+cws_be_2019 <- cws_be_2019[cws_be_2019$time < "2019-06-27 16:00:00" 
+                           & cws_be_2019$time >= "2019-06-26 20:00:00",]
 
 
 
