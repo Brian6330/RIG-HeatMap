@@ -154,6 +154,17 @@ for (i in 1:length(log$date_time_gmt_plus_2)){
   }
 }
 
+# Change am/pm to 24 hour format
+for (i in 1:length(log$date_time_gmt_plus_2)) {
+  if (endsWith(log$date_time_gmt_plus_2[i], "am")) {
+    log$date_time_gmt_plus_2_24[i] <- sub(' am$', '', log$date_time_gmt_plus_2[i])
+  } else if (endsWith(log$date_time_gmt_plus_2[i], "pm")) {
+    trimmed <- sub(' pm$', '', log$date_time_gmt_plus_2[i])
+    substr(trimmed, 12, 13) <- toString(as.numeric(substr(trimmed, 11, 13)) + 12)
+    log$date_time_gmt_plus_2_24[i] <- trimmed
+  }
+}
+
 #Problem: See: https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/strptime
 # Doc f�r %p:
 # %p
@@ -162,8 +173,9 @@ for (i in 1:length(log$date_time_gmt_plus_2)){
 #The behaviour is undefined if used for input in such a locale.
 
 #--> how to convert in a german locale?
-# TODO Fix these NAs, it probably has something to with the data being converted to a string
+# TODO Fix these NAs, it probably has something to with the data not being as expected. Try with 24h format?
 for (i in 1:length(log$date_time_gmt_plus_2)){
+  log$date_time_gmt_plus_2test[i] <- strptime(as.POSIXlt(log$date_time_gmt_plus_2[i]), "%Y-%m-%d %I:%M:%S %p",tz = "Europe/Zurich") # convert to POSIXlt
 }
 
 
