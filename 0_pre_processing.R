@@ -49,7 +49,7 @@ bicycle$TIMESTAMP_CEST <- with_tz(bicycle$TIMESTAMP_CEST, "Europe/Berlin")
 # Z11 <- c(5491:5546); B5 <- c(5547:5993); C5 <- c(5994:6435); Z12 <- c(6436:6776)
 
 
-# add column ROUTE and fill it with valules as defined above
+# add column ROUTE and fill it with values as defined above
 # 
 # Route <- c(rep("Z0", length(Z0)),rep("A1", length(A1)),rep("Z1", length(Z1)),rep("B1", length(B1)),
 #            rep("Z2", length(Z2)) ,rep("C1", length(C1)),rep("Z3", length(Z3)),
@@ -65,9 +65,7 @@ bicycle$TIMESTAMP_CEST <- with_tz(bicycle$TIMESTAMP_CEST, "Europe/Berlin")
 
 
 
-### READ THE NETATMO CWS DATA (cws) FROM AUGUST (08) 2018 ###
-
-
+### READ THE NETATMO CWS DATA (cws) FROM July (07) 2019 ###
 
 #read temperature time series of individual stations
 cws_be_2019 <- read.csv(file = "Raw Data/Netatmo_Data/cws_bern_ta_level_o1_2019_JJA_UTM.csv",
@@ -80,33 +78,33 @@ cws_be_2019 <- read.csv(file = "Raw Data/Netatmo_Data/cws_bern_ta_level_o1_2019_
 # convert time_orig to seperate vector and convert to proper character format
 time_orig_temp <- as.data.frame(cws_be_2019$time_orig)
 
-
 # keep NA as NA, convert the rest
 time_orig_temp <- as.data.frame(apply(time_orig_temp, 2,
                                       function(x) {ifelse(is.na(x), NA, as.character(paste(substr(x,1,10), substr(x,12,19),sep = " ")))}))
-
 
 
 # add temporary time vector back to the cws_be_2019 data frame and delete it
 time_orig_temp <- as.vector(time_orig_temp$`cws_be_2019$time_orig`)
 cws_be_2019$time_orig <- (time_orig_temp); rm(time_orig_temp)
 
-
 # change format of (hourly) time column
 cws_be_2019$time <- as.character(cws_be_2019$time)
 
 
 ## convert cws time to POSIXct and set timezone to gmt plus 2 (= utc plus 2, = cest)
-
 # time_orig
 cws_be_2019$time_orig <- as.POSIXct(cws_be_2019$time_orig, tz = "UTC") # convert to POSIXct
 attributes(cws_be_2019$time_orig)$tzone <- "Europe/Berlin"
-attributes(cws_be_2019$time_orig)$tzone; cws_be_2019$time_orig[1:10] # time zone is CEST = Europe/Berlin (time should have shifted to 2h later)
+
+# The following line is for checking the output
+attributes(cws_be_2019$time_orig)$tzone; cws_be_2019$time_orig[1:20] # time zone is CEST = Europe/Berlin (time should have shifted to 2h later)
 
 # time (hourly)
 cws_be_2019$time <- as.POSIXct(cws_be_2019$time, tz = "UTC") # convert to POSIXct
 attributes(cws_be_2019$time)$tzone <- "Europe/Berlin"
-attributes(cws_be_2019$time)$tzone; cws_be_2019$time[1:10] # time zone is CEST = Europe/Berlin
+
+# The following line is for checking the output
+attributes(cws_be_2019$time)$tzone; cws_be_2019$time[1:20] # time zone is CEST = Europe/Berlin
 
 
 # only keep cws files from the time period of the bicycle transect time
@@ -114,13 +112,7 @@ attributes(cws_be_2019$time)$tzone; cws_be_2019$time[1:10] # time zone is CEST =
 cws_be_2019 <- cws_be_2019[cws_be_2019$time < "2019-06-27 16:00:00" 
                            & cws_be_2019$time >= "2019-06-26 20:00:00",]
 
-
-
-
-
 #### READ THE LOGGER DATA FROM MORITZ GUBLERS PHD PROJECT (log) ###
-
-
 #read logger measurements
 log <- read.csv(file = "Raw Data/Loggerdaten_2019_JJA/Data_2019_compiled.csv",
                 stringsAsFactors = FALSE)
@@ -129,18 +121,16 @@ log <- read.csv(file = "Raw Data/Loggerdaten_2019_JJA/Data_2019_compiled.csv",
 log_meta <- read.csv2(file = "Raw Data/Loggerdaten_2019_JJA/Standorte_2019_DEF.csv",
                       header = TRUE, sep = ",", stringsAsFactors = F)
 
-
-
 #change all temperature values to numeric
 for(i in 2: length(log[1,])){
   log[,i] <- as.numeric(as.character(log[,i]))
 }
 
 
-# create timestamps for log
+### create timestamps for log
 
 #rename the col (is this just a difference in name or is this a wrong timestamp?)
-names(log)[names(log) == "ï..time"] <- "date_time_gmt_plus_2"
+names(log)[endsWith(names(log), "..time")] <- "date_time_gmt_plus_2"
 
 # convert the two different time formats to the same one (differentiate them by string length using "nchar")
 for (i in 1:length(log$date_time_gmt_plus_2)){
@@ -155,26 +145,27 @@ for (i in 1:length(log$date_time_gmt_plus_2)){
                                                           ,"00"," ",substr(log$date_time_gmt_plus_2[i],19,20), sep = ""))}
 }
 
-#change vo/na to am/pm
-#for (i in 1:length(log$date_time_gmt_plus_2)){
-#  if(substr(log$date_time_gmt_plus_2[i],21,22)=="vo"){
-#    log$date_time_gmt_plus_2[i] <- as.character(paste(substr(log$date_time_gmt_plus_2[1],0,20),"AM"))   
-#  }
-#  else{
-#    log$date_time_gmt_plus_2[i] <- as.character(paste(substr(log$date_time_gmt_plus_2[1],0,20),"PM"))
-#  }
-#}
+# Change vo/na to am/pm
+for (i in 1:length(log$date_time_gmt_plus_2)){
+  if (endsWith(log$date_time_gmt_plus_2[i], "vo")) {
+    log$date_time_gmt_plus_2[i] <- sub('vo$', 'am', log$date_time_gmt_plus_2[i])
+  } else if (endsWith(log$date_time_gmt_plus_2[i], "na")) {
+    log$date_time_gmt_plus_2[i] <- sub('na$', 'pm', log$date_time_gmt_plus_2[i])
+  }
+}
 
 #Problem: See: https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/strptime
-# Doc für %p:
+# Doc fï¿½r %p:
 # %p
 #AM/PM indicator in the locale. Used in conjunction with %I and not with %H. 
 #An empty string in some locales (for example on some OSes, non-English European locales including Russia).
 #The behaviour is undefined if used for input in such a locale.
 
 #--> how to convert in a german locale?
-log$date_time_gmt_plus_2test <- strptime(log$date_time_gmt_plus_2, "%Y-%m-%d %I:%M:%S %p",tz = "Europe/Zurich") # convert to POSIXlt
-
+# TODO Fix these NAs, it probably has something to with the data being converted to a string
+for (i in 1:length(log$date_time_gmt_plus_2)){
+  log$date_time_gmt_plus_2test[i] <- strptime(as.POSIXlt(log$date_time_gmt_plus_2[i]), "%Y-%m-%d %I:%M:%S %p",tz = "Europe/Zurich") # convert to POSIXlt
+}
 
 
 # only keep log data from the time of the bicycle transect
@@ -516,51 +507,51 @@ dir.create("output_reworked/0_pre_processing_orig/distance")
 
 
 ### save bicycle data
-# write.csv(bicycle,row.names = F,
-#           file = paste0("output_reworked/0_pre_processing_orig/bicycle/","bicycle.csv"))
-# write.csv(bicycle_complete,row.names = F,
-#           file = paste0("output_reworked/0_pre_processing_orig/bicycle/","bicycle_complete.csv"))
+write.csv(bicycle,row.names = F,
+          file = paste0("output_reworked/0_pre_processing_orig/bicycle/","bicycle.csv"))
+write.csv(bicycle_complete,row.names = F,
+          file = paste0("output_reworked/0_pre_processing_orig/bicycle/","bicycle_complete.csv"))
 
 
 # 
 # ### save log data
-# write.csv(log,row.names = F,
-#           file = paste0("output_reworked/0_pre_processing_orig/log/","log.csv"))
-# write.csv(log_meta,row.names = F,
-#           file = paste0("output_reworked/0_pre_processing_orig/log/","log_meta.csv"))
-# write.csv(log_bicycle,row.names = F,
-#           file = paste0("output_reworked/0_pre_processing_orig/log/","log_bicycle.csv"))
+write.csv(log,row.names = F,
+          file = paste0("output_reworked/0_pre_processing_orig/log/","log.csv"))
+write.csv(log_meta,row.names = F,
+          file = paste0("output_reworked/0_pre_processing_orig/log/","log_meta.csv"))
+write.csv(log_bicycle,row.names = F,
+          file = paste0("output_reworked/0_pre_processing_orig/log/","log_bicycle.csv"))
 
 # 
 # ### save cws data
-# write.csv(cws_be_08,row.names = F,
-#           file = paste0("output_reworked/0_pre_processing_orig/cws_be_08/","cws_be_08.csv"))
-# write.csv(cws_be_08_meta,row.names = F,
-#           file = paste0("output_reworked/0_pre_processing_orig/cws_be_08/","cws_be_08_meta.csv"))
-# #
+write.csv(cws_be_08,row.names = F,
+          file = paste0("output_reworked/0_pre_processing_orig/cws_be_08/","cws_be_08.csv"))
+write.csv(cws_be_08_meta,row.names = F,
+          file = paste0("output_reworked/0_pre_processing_orig/cws_be_08/","cws_be_08_meta.csv"))
+#
 
 # # time_orig
-# write.csv(cws_be_08_bicycle_time_orig, row.names = F,
-#           file=paste0("output_reworked/0_pre_processing_orig/cws_be_08/","cws_be_08_bicycle_time_orig.csv"))
-# # ta_int
-# write.csv(cws_be_08_bicycle_ta_int_orig, row.names = F,
-#           file=paste0("output_reworked/0_pre_processing_orig/cws_be_08/","cws_be_08_bicycle_ta_int_orig.csv"))
-# 
-# # # cws-biycle
-# write.csv(cws_be_08_bicycle, row.names = F,
-#           file=paste0("output_reworked/0_pre_processing_orig/cws_be_08/","cws_be_08_bicycle.csv"))
+write.csv(cws_be_08_bicycle_time_orig, row.names = F,
+          file=paste0("output_reworked/0_pre_processing_orig/cws_be_08/","cws_be_08_bicycle_time_orig.csv"))
+# ta_int
+write.csv(cws_be_08_bicycle_ta_int_orig, row.names = F,
+          file=paste0("output_reworked/0_pre_processing_orig/cws_be_08/","cws_be_08_bicycle_ta_int_orig.csv"))
+
+# # cws-biycle
+write.csv(cws_be_08_bicycle, row.names = F,
+          file=paste0("output_reworked/0_pre_processing_orig/cws_be_08/","cws_be_08_bicycle.csv"))
 
 # 
 # 
 # ### spatial distance and time dist
-# write.csv(dist_cws_be_08_bicycle, row.names = F,
-#           file=paste0("output_reworked/0_pre_processing_orig/distance/","dist_cws_be_08_bicycle.csv"))
-# write.csv(dist_log_bicycle, row.names = F,
-#           file=paste0("output_reworked/0_pre_processing_orig/distance/","dist_log_bicycle.csv"))
+write.csv(dist_cws_be_08_bicycle, row.names = F,
+          file=paste0("output_reworked/0_pre_processing_orig/distance/","dist_cws_be_08_bicycle.csv"))
+write.csv(dist_log_bicycle, row.names = F,
+          file=paste0("output_reworked/0_pre_processing_orig/distance/","dist_log_bicycle.csv"))
 
 # # delta t
-# write.csv(cws_be_08_bicycle_time_orig_dt, row.names = F,
-#           file=paste0("output_reworked/0_pre_processing_orig/distance/","cws_be_08_bicycle_time_orig_dt.csv"))
-# 
-# write.csv(log_bicycle_dt, row.names = F,
-#           file=paste0("output_reworked/0_pre_processing_orig/distance/","log_bicycle_dt.csv"))
+write.csv(cws_be_08_bicycle_time_orig_dt, row.names = F,
+          file=paste0("output_reworked/0_pre_processing_orig/distance/","cws_be_08_bicycle_time_orig_dt.csv"))
+
+write.csv(log_bicycle_dt, row.names = F,
+          file=paste0("output_reworked/0_pre_processing_orig/distance/","log_bicycle_dt.csv"))

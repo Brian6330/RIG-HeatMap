@@ -128,3 +128,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /Raw Data/Netatmo_Data/cws_bern_ta_level_o1_2019_JJA_UTM.csv
+.Rproj.user
