@@ -164,7 +164,6 @@ for (i in 1:length(log$date_time_gmt_plus_2)){
 #--> how to convert in a german locale?
 # TODO Fix these NAs, it probably has something to with the data being converted to a string
 for (i in 1:length(log$date_time_gmt_plus_2)){
-  log$date_time_gmt_plus_2test[i] <- strptime(as.POSIXlt(log$date_time_gmt_plus_2[i]), "%Y-%m-%d %I:%M:%S %p",tz = "Europe/Zurich") # convert to POSIXlt
 }
 
 
