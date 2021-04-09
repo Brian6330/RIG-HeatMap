@@ -117,9 +117,15 @@ cws_be_2019 <- cws_be_2019[cws_be_2019$time < "2019-06-27 16:00:00"
 log <- read.csv(file = "Raw Data/Loggerdaten_2019_JJA/Data_2019_compiled.csv",
                 stringsAsFactors = FALSE)
 
-# read logger metadata
-log_meta <- read.csv2(file = "Raw Data/Loggerdaten_2019_JJA/Standorte_2019_DEF.csv",
-                      header = TRUE, sep = ",", stringsAsFactors = F)
+# remove measurements from Log_100 (erronous measurements) and Log_5, Log_7, Log_64, Log_85 (rooftop stations)
+# and Log_999, Log_98 (additional measurements from Zollikofen Meteoschweiz Location)
+log$Log_5 <- NULL
+log$Log_7 <- NULL
+log$Log_64 <- NULL
+log$Log_85 <- NULL
+log$Log_100_AFU_REF_2.45m <- NULL
+log$Log_999_REF_ZOLL_HAUS <- NULL
+log$Log_98_REF_ZOLL_2m <- NULL
 
 #change all temperature values to numeric
 for(i in 2: length(log[1,])){
@@ -145,51 +151,42 @@ for (i in 1:length(log$date_time_gmt_plus_2)){
                                                           ,"00"," ",substr(log$date_time_gmt_plus_2[i],19,20), sep = ""))}
 }
 
+
 # Change vo/na to am/pm
 for (i in 1:length(log$date_time_gmt_plus_2)){
   if (endsWith(log$date_time_gmt_plus_2[i], "vo")) {
-    log$date_time_gmt_plus_2[i] <- sub('vo$', 'am', log$date_time_gmt_plus_2[i])
+    log$date_time_gmt_plus_2[i] <- sub('vo$', 'AM', log$date_time_gmt_plus_2[i])
   } else if (endsWith(log$date_time_gmt_plus_2[i], "na")) {
-    log$date_time_gmt_plus_2[i] <- sub('na$', 'pm', log$date_time_gmt_plus_2[i])
+    log$date_time_gmt_plus_2[i] <- sub('na$', 'PM', log$date_time_gmt_plus_2[i])
   }
 }
 
-# Change am/pm to 24 hour format
+# Change AM/PM to 24 hour format
 for (i in 1:length(log$date_time_gmt_plus_2)) {
-  if (endsWith(log$date_time_gmt_plus_2[i], "am")) {
-    log$date_time_gmt_plus_2_24[i] <- sub(' am$', '', log$date_time_gmt_plus_2[i])
-  } else if (endsWith(log$date_time_gmt_plus_2[i], "pm")) {
-    trimmed <- sub(' pm$', '', log$date_time_gmt_plus_2[i])
-    substr(trimmed, 12, 13) <- toString(as.numeric(substr(trimmed, 11, 13)) + 12)
-    log$date_time_gmt_plus_2_24[i] <- trimmed
+  if (endsWith(log$date_time_gmt_plus_2[i], 'AM')) {
+    trimmed <- sub(' AM$', '', log$date_time_gmt_plus_2[i])
+    if (as.numeric(substr(trimmed, 11, 13)) == 12) {
+      substr(trimmed, 12, 13) <- "00" # We need double digits
+    }
+    log$date_time_gmt_plus_2[i] <- trimmed
+  } else if (endsWith(log$date_time_gmt_plus_2[i], 'PM')) {
+    trimmed <- sub(' PM$', '', log$date_time_gmt_plus_2[i])
+    if (as.numeric(substr(trimmed, 11, 13)) != 12) {
+      substr(trimmed, 12, 13) <- toString(as.numeric(substr(trimmed, 11, 13)) + 12)
+    }
+    log$date_time_gmt_plus_2[i] <- trimmed
   }
 }
 
-#Problem: See: https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/strptime
-# Doc f�r %p:
-# %p
-#AM/PM indicator in the locale. Used in conjunction with %I and not with %H. 
-#An empty string in some locales (for example on some OSes, non-English European locales including Russia).
-#The behaviour is undefined if used for input in such a locale.
+# Only keep log data from the days of the bicycle transect, for some reason this reintroduces the AM and PM times, but works to filter days.
+log <- log[log$date_time_gmt_plus_2 <= "2019-06-27 16:00:00" & log$date_time_gmt_plus_2 >= "2019-06-26 20:00:00",]
 
-#--> how to convert in a german locale?
-# TODO Fix these NAs, it probably has something to with the data not being as expected. Try with 24h format?
-for (i in 1:length(log$date_time_gmt_plus_2)){
-  log$date_time_gmt_plus_2test[i] <- strptime(as.POSIXlt(log$date_time_gmt_plus_2[i]), "%Y-%m-%d %I:%M:%S %p",tz = "Europe/Zurich") # convert to POSIXlt
-}
+# Test output
+log$date_time_gmt_plus_2
 
-
-# only keep log data from the time of the bicycle transect
-log <- log[log$date_time_gmt_plus_2 <= "2018-08-08 23:50:00" & log$date_time_gmt_plus_2 >= "2018-08-07 00:00:00",]
-
-# remove measurements from Log_100 (erronous measurements) and Log_5, Log_7, Log_64, Log_85 (rooftop stations)
-# and Log_999, Log_98 (additional measurements from Zollikofen Meteoschweiz Location)
-log$Log_5 <- NULL; log$Log_7 <- NULL; log$Log_64 <- NULL; log$Log_85 <- NULL; log$Log_100_AFU_REF_2.45m <- NULL
-log$Log_999_REF_ZOLL_HAUS <- NULL; log$Log_98_REF_ZOLL_2m <- NULL
-
-
-#change colnames to match "objectID" column in log_meta
-colnames(log)[78] <- "Log_99"; colnames(log)[75] <- "Log_83"
+# The following has been commented out as it is not required for our project:
+# change colnames to match "objectID" column in log_meta
+# colnames(log)[78] <- "Log_99"; colnames(log)[75] <- "Log_83"
 
 # # combine columns of log dataframe into one column (this makes it possible to join with log_meta df)
 # temp_vector <- as.numeric(unlist(log[,2:length(log[1,])]))
@@ -210,43 +207,34 @@ colnames(log)[78] <- "Log_99"; colnames(log)[75] <- "Log_83"
 
 
 # read logger metadata
-log_meta <- read.csv2(file = "data/Data_Loggers_2018/Data_Standorte_Meta_DEF.csv",
-                      header = TRUE)
+log_meta <- read.csv2(file = "Raw Data/Loggerdaten_2019_JJA/Standorte_2019_DEF.csv",
+                      header = TRUE, sep = ",", stringsAsFactors = F)
 
-#changes selected values to numeric or integer
-for(i in (4:6)){
-  log_meta[,i] <- as.numeric(as.character(log_meta[,i]))
-}
-log_meta$UMFANG_PFOSTEN <- as.integer(as.character(log_meta$UMFANG_PFOSTEN))
+# remove measurements from Log_100 (erronous measurements) and Log_5, Log_7, Log_64, Log_85 (rooftop stations)
+# and Log_999, Log_98 (additional measurements from Zollikofen Meteoschweiz Location)
+log_meta$Log_5 <- NULL
+log_meta$Log_7 <- NULL
+log_meta$Log_64 <- NULL
+log_meta$Log_85 <- NULL
+log_meta$Log_100_AFU_REF_2.45m <- NULL
+log_meta$Log_999_REF_ZOLL_HAUS <- NULL
+log_meta$Log_98_REF_ZOLL_2m <- NULL
 
-names(log_meta)[names(log_meta) == "H?.HE_SENSOR"] <- "HOEHE_SENSOR" # remove umlaut in colname
-
-# remove data from Log_64 and Log_85 (rooftop stations)
-log_meta <- log_meta[-c(60,76),]
-
-#convert the logger names to characters
-log_meta$objectID <- as.character(log_meta$objectID)
-# log$log_number <- as.character(log$log_number)
-
+# The following code is unused and can be ignored (was already commented out by Lukas)
 # append log_meta to log based on common column with logger number
 # log_join <- inner_join(log, log_meta, by = c("log_number" = "objectID"))
 
-
-
 # Bicycle QC -------------------------------
-
 bicycle[is.na(bicycle)]<-0 # set NA values to 0, which makes working with them easier
 
-
 #add Flag vectors to bicycle data.frame
-bicycle$Equal_Temp_Flag = c(rep(NA,length(bicycle$RecNo)))
-bicycle$NbrofSats_Flag = c(rep(NA,length(bicycle$RecNo)))
-bicycle$Implausible_Flag = c(rep(NA,length(bicycle$RecNo)))
-bicycle$Route_Flag <- c(rep(NA,length(bicycle$RecNo)))
+bicycle$Equal_Temp_Flag <- c(rep(NA,length(bicycle$INDEX)))
+bicycle$NbrofSats_Flag <- c(rep(NA,length(bicycle$INDEX)))
+bicycle$Implausible_Flag <- c(rep(NA,length(bicycle$INDEX)))
+bicycle$Route_Flag <- c(rep(NA,length(bicycle$INDEX)))
 
-
-# check for 8 or more equal temperature Values in a row (temp_Flag)
-
+# TODO: Code beyond this line has not been reworked / looked at, especially as we have the problem of not having any bicycle temperature measurements -> mail has been sent.
+# Check for 8 or more equal temperature Values in a row (temp_Flag)
 for(i in 1:(length(bicycle$Temp.C)-7)){
   if (bicycle$Temp.C[i]==bicycle$Temp.C[i+1] & bicycle$Temp.C[i]==bicycle$Temp.C[i+2] 
       & bicycle$Temp.C[i]==bicycle$Temp.C[i+3] & bicycle$Temp.C[i]==bicycle$Temp.C[i+4]
@@ -259,7 +247,6 @@ for(i in 1:(length(bicycle$Temp.C)-7)){
 
 
 # Flag when Nbr of Sats <4?
-
 for (i in 1:length(bicycle$Nbr.of.Sats)){
   if(bicycle$Nbr.of.Sats[i]<=4){
     bicycle$NbrofSats_Flag[i]<-TRUE}
@@ -283,7 +270,6 @@ for(i in 1:length(bicycle$Temp.C)){
 
 
 # Flag measurements made during the stops at the GIUB (column "Route" has values Z0,Z1,Z2, ... ,  Z12)
-
 for (i in 1:length(bicycle$Route_Flag)){
   if(grepl("Z", bicycle$Route[i]) == TRUE) {
     bicycle$Route_Flag[i]<-TRUE}
