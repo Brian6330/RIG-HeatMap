@@ -5,8 +5,8 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 
 #Specify Infile Transect and GPS files
-INFILE_Transect <- "Raw_Data/Transekt_Juni_2019/Transekt_Juni_2019_1.dat"
-INFILE_GPS <- "Raw_Data/Transekt_Juni_2019/1.CSV"
+INFILE_Transect <- "Raw Data/Transekt_Juni_2019/Transekt_Juni_2019_1.dat"
+INFILE_GPS <- "Raw Data/Transekt_Juni_2019/1.CSV"
 
 # read and prepare dataframes ---------------------------------------------------------------
 
