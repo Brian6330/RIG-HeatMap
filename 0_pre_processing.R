@@ -312,9 +312,10 @@ cws_be_2019 <- subset(cws_be_2019, cws_be_2019$lon <= bounds$max[1] & cws_be_201
                     & cws_be_2019$lat <= bounds$max[2] & cws_be_2019$lat >= bounds$min[2])
 
 
-#TODO: Where is this file?
-#cws_be_2019_meta <- subset(cws_be_2019_meta, lon <= bounds$max[2] & cws_be_2019_meta$lon >= bounds$min[2] 
-#                         & cws_be_2019_meta$lat <= bounds$max[1] & cws_be_2019_meta$lat >= bounds$min[1])
+cws_be_2019_meta <- subset(cws_be_2019, lon <= bounds$max[1] & cws_be_2019$lon >= bounds$min[1] 
+                         & cws_be_2019$lat <= bounds$max[2] & cws_be_2019$lat >= bounds$min[2])
+
+cws_be_2019_meta <- distinct(cws_be_2019_meta,cws_be_2019_meta$p_id, .keep_all = TRUE)
 
 rm(north_bounds_bicycle, south_bounds_bicycle, east_bounds_bicycle,west_bounds_bicycle
    ,north_bounds_log, south_bounds_log, east_bounds_log, west_bounds_log, bounds_bicycle, bounds_log)
