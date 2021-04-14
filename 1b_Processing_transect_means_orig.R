@@ -1,11 +1,11 @@
 # Netatmo Preprocessing 1b transect means
 
-# This script loads and formats the temperature measurements from the bicycle campaign (bicycle) in August 2018 and the corresponding data
-# from the Netatmo citizen weather stations (cws_be_08) and the loggers of Moritz Gublers PhD Project (log).
-# Further it calculates the spatial and temporal distances between bicycle and cws_be_08/log.
+# This script loads and formats the temperature measurements from the bicycle campaign (bicycle) in August 2019 and the corresponding data
+# from the Netatmo citizen weather stations (cws_be_2019) and the loggers of Moritz Gublers PhD Project (log).
+# Further it calculates the spatial and temporal distances between bicycle and cws_be_2019/log.
 
 # SET WORKING DIRECTORY
-setwd("C:/Users/Lukas/Desktop/HiWI/Paper_Netatmo_Lukas") # personal laptop
+# setw/d("C:/Users/Lukas/Desktop/HiWI/Paper_Netatmo_Lukas") # personal laptop
 # setwd("/scratch3/lukas/HiWi/Paper_Netatmo_Lukas/") # GIUB computer
 
 # install libraries
@@ -21,26 +21,24 @@ library("Metrics") # for statistical calculations
 
 bicycle <- read.csv(file = "output_reworked/0_pre_processing_orig/bicycle/bicycle.csv")[,c(1:11)]
 
-cws_be_08_bicycle_ta_int <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_08/cws_be_08_bicycle_ta_int_orig.csv")
-cws_be_08_bicycle_time_orig <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_08/cws_be_08_bicycle_time_orig.csv")
-cws_be_08_bicycle_time_orig_dt <- read.csv(file = "output_reworked/0_pre_processing_orig/distance/cws_be_08_bicycle_time_orig_dt.csv")
+cws_be_2019_bicycle_ta_int <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019_bicycle_ta_int_orig.csv")
+cws_be_2019_bicycle_time_orig <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019_bicycle_time_orig.csv")
 
-cws_be_08_meta <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_08/cws_be_08_meta.csv")
+cws_be_2019_meta <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019_meta.csv")
 
 log_bicycle <- read.csv(file = "output_reworked/0_pre_processing_orig/log/log_bicycle.csv")
 
 log_meta <- read.csv(file="output_reworked/0_pre_processing_orig/log/log_meta.csv")
 
-all <- cbind(bicycle, cws_be_08_bicycle_ta_int, log_bicycle)
-all$Date.Time <- as.POSIXct(all$Date.Time, tz = "Europe/Berlin") # convert to POSIXct
+all <- cbind(bicycle, cws_be_2019_bicycle_ta_int, log_bicycle)
+all$Date.Time <- as.POSIXct(all$dateAndTime, tz = "Europe/Berlin") # convert to POSIXct
 
 # Transect Means ----------------------------------------------------------
 
 
-# #rename Temperature Column
-# names(bicycle)[names(bicycle) == "Temp.?..C."] <- paste("Temp.C") # for windows
-# names(bicycle)[names(bicycle) == "Temp.ï..C."] <- paste("Temp.C") # for linux
-# #names(bicycle)[5] <- paste("Temp.C") # last resort solution
+#rename Temperature Column
+# names(bicycle)[names(bicycle) == "Temp.?..C."] <- paste("Temp.C")
+# names(bicycle)[5] <- paste("Temp.C") # last resort solution
 
 
 cws_transect_means <- aggregate(all[, 12:592], list(all$Route), mean, na.rm=T)
@@ -72,18 +70,23 @@ p_id <- as.numeric(p_id)
 
 # hourly means ------------------------------------------------------------
 
-times <- c("2018-08-07 22:00:00","2018-08-07 23:00:00","2018-08-08 00:00:00","2018-08-08 01:00:00", "2018-08-08 02:00:00",
-           "2018-08-08 03:00:00","2018-08-08 04:00:00","2018-08-08 05:00:00","2018-08-08 06:00:00","2018-08-08 07:00:00")
+times <- c("2019-06-26 20:00:00", "2019-06-26 21:00:00", "2019-06-26 22:00:00", "2019-06-26 23:00:00",
+           "2019-06-27 00:00:00", "2019-06-27 01:00:00", "2019-06-27 02:00:00", "2019-06-27 03:00:00",
+           "2019-06-27 04:00:00", "2019-06-27 05:00:00", "2019-06-27 06:00:00", "2019-06-27 07:00:00",
+           "2019-06-27 08:00:00", "2019-06-27 09:00:00", "2019-06-27 10:00:00", "2019-06-27 11:00:00",
+           "2019-06-27 12:00:00", "2019-06-27 13:00:00", "2019-06-27 14:00:00", "2019-06-27 15:00:00",
+           "2019-06-27 16:00:00")
 
 # for 1h periods
 hourly_log_means_list <- list()
 hourly_cws_means_list <- list()
+temp1 <- NA
 for (i in 1:(length(times)-2)){
   # create subsets of time periods
-  temp1 <- subset(all, Date.Time >= times[i] & Date.Time <= times[i+1])
+  temp1 <- subset(all, dateAndTime == times[i] & dateAndTime <= times[i+1])
   # calculate column means of subsets
-  log_means <- as.data.frame(colMeans(temp1[609:686], na.rm = T))
-  cws_means <- as.data.frame(colMeans(temp1[12:592], na.rm = T))
+  log_means <- as.data.frame(colMeans(temp1[701:774], na.rm = T))
+  cws_means <- as.data.frame(colMeans(temp1[12:677], na.rm = T))
   colnames(log_means) <- paste0("time_",substr(times[i], 12,13),"_",substr(times[i+1], 12,13))
   colnames(cws_means) <- paste0("time_",substr(times[i], 12,13),"_",substr(times[i+1], 12,13))
   # append log means to hourly means to the transect means
@@ -103,8 +106,8 @@ for (i in 1:(length(times)-3)){
   # create subsets of time periods
   temp1 <- subset(all, Date.Time >= times[i] & Date.Time <= times[i+2])
   # calculate column means of subsets
-  log_means <- as.data.frame(colMeans(temp1[609:686], na.rm = T))
-  cws_means <- as.data.frame(colMeans(temp1[12:592], na.rm = T))
+  log_means <- as.data.frame(colMeans(temp1[701:774], na.rm = T))
+  cws_means <- as.data.frame(colMeans(temp1[12:677], na.rm = T))
   colnames(log_means) <- paste0("time_",substr(times[i], 12,13),"_",substr(times[i+2], 12,13))
   colnames(cws_means) <- paste0("time_",substr(times[i], 12,13),"_",substr(times[i+2], 12,13))
   # append log means to hourly means to the transect means

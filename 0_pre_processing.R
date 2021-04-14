@@ -65,7 +65,7 @@ bicycle$TIMESTAMP_CEST <- with_tz(bicycle$TIMESTAMP_CEST, "Europe/Berlin")
 
 
 
-### READ THE NETATMO CWS DATA (cws) FROM July (07) 2019 ###
+### READ THE NETATMO CWS DATA (cws) FROM July 26 and 27 2019 ###
 
 #read temperature time series of individual stations
 cws_be_2019 <- read.csv(file = "Raw Data/Netatmo_Data/cws_bern_ta_level_o1_2019_JJA_UTM.csv",
