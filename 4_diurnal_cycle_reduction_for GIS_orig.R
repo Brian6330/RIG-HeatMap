@@ -22,7 +22,7 @@ source("r_scripts/functions/len_no_NA.R")
 
 # bicycle
 bicycle <- read.csv(file = "output_reworked/0_pre_processing_orig/bicycle/bicycle.csv")
-bicycle$Date.Time <- as.POSIXct(bicycle$Date.Time,
+bicycle$dateAndTime <- as.POSIXct(bicycle$dateAndTime,
                                 tz = "Europe/Zurich") # convert to POSIXct
 
 #log
@@ -32,10 +32,10 @@ log$date_time_gmt_plus_2 <- as.POSIXct(log$date_time_gmt_plus_2,
 log_meta <- read.csv(file="output_reworked/0_pre_processing_orig/log/log_meta.csv")
 
 # cws
-cws_be_08 <- read.csv(file="output_reworked/0_pre_processing_orig/cws_be_08/cws_be_08.csv")[-1]
-cws_be_08$time_orig <- as.POSIXct(cws_be_08$time_orig,
-                                       tz = "Europe/Zurich")
-cws_be_08_meta <- read.csv(file="output_reworked/0_pre_processing_orig/cws_be_08/cws_be_08_meta.csv")
+cws_be_2019 <- read.csv(file="output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019.csv")[-1]
+#cws_be_2019$time_orig <- as.POSIXct(cws_be_2019$time_orig,
+#                                       tz = "Europe/Zurich")
+cws_be_2019_meta <- read.csv(file="output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019_meta.csv")
 
 # time distance
 log_bicycle_dt <- read.csv(file="output_reworked/0_pre_processing_orig/distance/log_bicycle_dt.csv",
@@ -51,7 +51,7 @@ for (f in files){
   rm(name)
 }; rm(f, files)
 
-Date.Time <- bicycle$Date.Time
+Date.Time <- bicycle$dateAndTime
 log_spatial_distance <- cbind(Date.Time, dist_log_bicycle)
 
 # log_list
@@ -99,13 +99,13 @@ cws_mean_night <- data.frame(cws_transect_means$p_id, cws_transect_means$night_2
 log_spatial_distance_night <- subset(log_spatial_distance, Date.Time >= "2018-08-07 22:00:00" & bicycle$Date.Time <= "2018-08-08 06:00:00")
 
 # combine log/cws transect means with metadata (coordinates)
-cws_mean_night <- inner_join(cws_mean_night, cws_be_08_meta, by = c("cws_transect_means.p_id" = "p_id"))
-log_mean_night <- inner_join(log_mean_night, log_meta, by = c("log_transect_means.NUMMER" = "NUMMER"))
+cws_mean_night <- inner_join(cws_mean_night, cws_be_2019_meta, by = c("cws_transect_means.p_id" = "p_id"))
+log_mean_night <- inner_join(log_mean_night, log_meta, by = c("log_transect_means.NUMMER" = "Nummer_2019"))
 
 
 # remove unecessary data
-rm(bicycle,cws_be_08,cws_list,cws_transect_means,
-   log,log_list,log_transect_means, time_dist, log_meta, cws_be_08_meta,
+rm(bicycle,cws_be_2019,cws_list,cws_transect_means,
+   log,log_list,log_transect_means, time_dist, log_meta, cws_be_2019_meta,
    log_spatial_distance, Date.Time)
 
 
