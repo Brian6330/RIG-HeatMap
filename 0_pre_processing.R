@@ -367,37 +367,37 @@ cws_be_2019_bicycle_time_orig_dt <- data.frame()
 cws_be_2019_bicycle_time_orig <- data.frame()
 cws_be_2019_bicycle_ta_int_orig <- data.frame()
 
-# Calculate cws temporal distance
-# loop through every CWS'
-for (j in 1:ncol(df_time_orig)){
- print(paste("CWS",j))
- # loop through every bicycle measurement
- for (i in 1:nrow(bicycle)){
-   # find min temporal distance (=closest measurement) between every bicylce measurement
-   # and the 48 CWS measurements and write to new df
-   min_dist <- which(abs(as.numeric(c(df_time_orig[,j]) - as.numeric(bicycle$TIMESTAMP_CEST[i]),
-                                    unit = "secs")) <= min(abs(as.numeric(c(df_time_orig[,j]) - as.numeric(bicycle$TIMESTAMP_CEST[i]),
-                                                                          unit = "secs")), na.rm =T))[1]
-   # the time difference in seconds between cws and bicycle
-   dist_time <- (as.numeric(c(df_time_orig[min_dist,j]) - as.numeric(bicycle$TIMESTAMP_CEST[i]),
-                       unit = "secs"))
-   
-   # write the minimum distance time to new df
-   cws_be_2019_bicycle_time_orig[i,j] <- df_time_orig[min_dist,j]
-   cws_be_2019_bicycle_ta_int_orig[i,j] <- df_ta_int_orig[min_dist,j]
-   
-   # write difference in seconds to new df
-   cws_be_2019_bicycle_time_orig_dt[i,j] <- dist_time
- }; rm(i)
-};rm(j)
+# # Calculate cws temporal distance
+# # loop through every CWS'
+# for (j in 1:ncol(df_time_orig)){
+#  print(paste("CWS",j))
+#  # loop through every bicycle measurement
+#  for (i in 1:nrow(bicycle)){
+#    # find min temporal distance (=closest measurement) between every bicylce measurement
+#    # and the 48 CWS measurements and write to new df
+#    min_dist <- which(abs(as.numeric(c(df_time_orig[,j]) - as.numeric(bicycle$TIMESTAMP_CEST[i]),
+#                                     unit = "secs")) <= min(abs(as.numeric(c(df_time_orig[,j]) - as.numeric(bicycle$TIMESTAMP_CEST[i]),
+#                                                                           unit = "secs")), na.rm =T))[1]
+#    # the time difference in seconds between cws and bicycle
+#    dist_time <- (as.numeric(c(df_time_orig[min_dist,j]) - as.numeric(bicycle$TIMESTAMP_CEST[i]),
+#                        unit = "secs"))
+
+#    # write the minimum distance time to new df
+#    cws_be_2019_bicycle_time_orig[i,j] <- df_time_orig[min_dist,j]
+#    cws_be_2019_bicycle_ta_int_orig[i,j] <- df_ta_int_orig[min_dist,j]
+
+#    # write difference in seconds to new df
+#    cws_be_2019_bicycle_time_orig_dt[i,j] <- dist_time
+#  }; rm(i)
+# };rm(j)
 
 
 # load the delta t tables (if values already calculated)
-#cws_be_2019_bicycle_time_orig_dt <- read.csv(file = "output_reworked/0_pre_processing_orig/distance/cws_be_2019_bicycle_time_orig_dt.csv")
-#cws_be_2019_bicycle_time_orig <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019_bicycle_time_orig.csv",
-#                                        header = T)
-#cws_be_2019_bicycle_ta_int_orig <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019_bicycle_ta_int_orig.csv",
-#                                          header = T)
+# Calculate cws temporal distancecws_be_2019_bicycle_time_orig_dt <- read.csv(file = "output_reworked/0_pre_processing_orig/distance/cws_be_2019_bicycle_time_orig_dt.csv")
+cws_be_2019_bicycle_time_orig <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019_bicycle_time_orig.csv",
+                                        header = T)
+cws_be_2019_bicycle_ta_int_orig <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019_bicycle_ta_int_orig.csv",
+                                          header = T)
 
 # convert the time_orig values to POSIX (incase they were loaded in and not calculated freshly)
 for (i in 1:length(length(cws_be_2019_bicycle_time_orig))){
