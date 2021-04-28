@@ -359,7 +359,7 @@ for (r in rad){
       # write to temporary variables
       temp_within_rad <- t(as.data.frame(which((dist_log_bicycle[i,] <= r) == TRUE))) # indices of distance values within radius
       temp_dist <- as.data.frame(dist_log_bicycle[i,temp_within_rad]) # distances of those indices (temporarily stored)
-      temp_within_rad_1 <- temp_within_rad + 1 # +1 because log_bicycle is one column longer than dist)
+      temp_within_rad_1 <- temp_within_rad + 23 # +23 because log_bicycle is 23 columns longer than dist)
       temp_temp <- data.table(log_bicycle[i, temp_within_rad_1]) # temperature of log within radius
       temp_temp <- as.data.frame(temp_temp) #convert back to df
       temp_name <- names(temp_temp) # names of the cws stations within the radius (stored temporarily)
@@ -372,7 +372,7 @@ for (r in rad){
       log_dist[i] <- apply(temp_dist, 1,
                            function(x) paste(x[!is.na(x)],collapse = ", ")) # collaps distances into one cell
       log_temp[i] <- paste(temp_temp[1:ncol(temp_temp)],collapse = ", ") # collaps temperatures into 1 cell
-      log_temp_difference[i] <- log_temp_weighted_mean[i]- bicycle$Temp.C[i]
+      log_temp_difference[i] <- log_temp_weighted_mean[i]- bicycle$Temp.degC[i]
       rm(temp_within_rad, temp_dist, temp_temp,temp_name, temp_within_rad_1) # remove temporary variables
     }
   }
