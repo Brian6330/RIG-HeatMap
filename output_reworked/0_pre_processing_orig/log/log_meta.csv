@@ -1,98 +1,76 @@
-"�..NUMMER_2018","Nummer_2019","STANDORT","NORD_CHTOPO","OST_CHTOPO","ELEV_CHTOPO","STATUS","ZUSTAENDIG","FOTO","BEFESTIGUNG","BEBAUUNG","VEGETATION","Notizen","X","X.1","X.2","X.3","X.4","X.5","X.6","X.7","X.8","X.9","X.10","X.11","X.12","X.13","X.14","X.15","X.16"
-"1",16,"Bubenbergplatz","46.94729","7.43849","542.5",1,"BERNMOBIL","ja","Masten","Tramlinie, Hauptstrasse","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"2",86,"Ostermundigen, Lötschenstr 13","46.95289","7.48707","551.5",1,"Gemeinde Ostermundigen","ja","Strassenlampe","Strasse, Einfamilienhäuser","Gärten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"4",82,"Thunplatz","46.94065","7.45822","551.6",1,"BERNMOBIL","ja","Tramampel","versiegelter Platz, Tramlinie, Kreisel","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"6",33,"Dählhölzli-Wald *****","46.93798","7.45656","535.2",1,"Burgergemeinde","ja","Baum (Fichte)","","Mischwald, Fichte + Buche","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"9",71,"Hirschengraben","46.94658","7.43786","540.3",2,"EWB","Lichtmasten","Laternenpfosten (zwischen Sitzbänken)","Kiesplatz, Strasse, Sandsteingebäude","Baumallee (Platanen); überdecken teils Sensor","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"10",42,"Gerechtigkeitsgasse 55","46.94813","7.45351","532",1,"TBA","ja","Verkehrsschild","Pflastersteinstrasse, Sandsteingebäude, Altstadt","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"12",68,"Gleisfeld Welle","46.94832","7.43365","540.1",1,"SBB","ja","Lichtmasten","Gleise, Schotter","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"13",13,"Egelsee","46.94471","7.46442","549.2",4,"??? (egal)","ja","Lampe","See (Tümpel), Naturweg","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"14",14,"Helvetiaplatz","46.94381","7.44885","530.8",4,"TBA","ja","Verkehrsschild","Strasse, Pflastersteinplatz, Brunnen","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"15",70,"Bundesplatz","46.94692","7.44354","542.6",1,"TBA","ja","Verkehrsschild","Strasse, Bundeshaus, Wasserspiel","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"17",17,"Rosengarten","46.95189","7.46019","568.4",4,"Stadtgrün","ja","Laterne","Kiesplatz","Hecken, Grasfläche, einzelne Bäume","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"18",52,"Umland Bümpliz","46.93362","7.36586","574.3",1,"EWB","ja","Stromleitungsmasten EWB40","","Feld","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"19",19,"Galgenfeld Neubausiedlung","46.95065","7.46992","579.1",4,"EWB","ja","Strassenlampe ??","Strasse, Blöcke","Gärten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"20",26,"Inselspital","46.94719","7.42567","543.7",1,"BERNMOBIL","ja","Strassenlampe","Hochhäuser, Betonplatz, Strasse","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"21",21,"Gaswerkareal Industrie EWB","46.9395","7.44213","503.1",4,"??? (EWB; egal)","ja","Lampe","Brachland, Kies, Parkplätze, Monbijoubrücle","Unkraut","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"22",22,"Matte Mühleplatz","46.94687","7.4562","499.6",4,"TBA","ja","Verkehrsschild","Parkplatz, Sandsteingebäude","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"23",10,"Länggasse, Neufeldstrasse 135","46.95791","7.4354","558.6",1,"EWB","ja","Strassenlampe","Asphaltweg, Kiesfeld(3x3m)","Rasen","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"25",20,"Umland Köniz *****","46.90339","7.39462","656.7",1,"BKW","ja","BKW Masten 9 auf ca 2m80","","Wiese, Feld","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"26",58,"Murifeld (vor Wohnturm 3)","46.93919","7.48007","553.1",1,"EWB","ja","Lampe","Asphaltweg, Hochhäuser","Einzelne Bäume, grosse Rasenfläche","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"27",30,"Galgenfeld Industrie","46.95555","7.47194","563.7",1,"EWB","ja","Strassenlampe","Strasse, Industrie (Recycling Blech)","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"28",46,"Autobahnausfahrt Wankdorf","46.96717","7.46968","547.6",1,"EWB","ja","Masten","Strasse, Brücke, Autobahn, Viel Verkehr","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"31",1,"VonRoll PH","46.95292","7.42253","553.8",1,"Uni Bern (VonRoll) & EWB","ja","Lichtmasten","Betonierter Platz, Gebäude","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"32",80,"Elfenau Kreuzung Hofmeister- Matterstrasse (Wegli)","46.9356","7.46954","544.6",1,"EWB","ja","Strassenlampe","Asphaltweg, Mehrfamilienhäuser","Links und rechts Gärten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"33",59,"Schlossmatte Familiengärten","46.94211","7.41689","548.4",1,"Stadtgrün","ja","Fahnenmasten","Schrebergärten, Kiesweg, Gartenhäuser","Gärten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"34",2,"Europaplatz","46.94333","7.40633","555.5",1,"BERNMOBIL","ja","Masten","Strasse, betonierter Platz, Brücke, Verkehr","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"35",6,"Bümpliz Fröschmattstrasse","46.9402","7.38371","561.9",1,"EWB","ja","Strassenlampe","Strasse, Mehrfamilienhäuser","Garten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"36",38,"Spiegel","46.92607","7.43739","619.8",1,"Gemeinde Köniz","ja","Strassenlampe","Strasse, Einfamilienhäuser, Teich","Garten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"37",37,"Lorraine, Steckweg 15","46.95896","7.44514","538.1",4,"EWB","ja","Strassenlampe","zwei Blöcke","Garten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"38",32,"Bremgartenwald *****","46.95739","7.42128","552.3",1,"Burgergemeinde","ja","Baum","","Wald","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"39",53,"Breitenrain, Waffenweg","46.96174","7.45191","554.9",1,"TBA","ja","Verkehrsschild 2m85","Kreuzung","Garten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"40",34,"Kasernenareal","46.95696","7.45802","559.3",1,"Kasernenareal","ja","Strassenlampe","Sandsteingebäude~30m","Rasen, Parkanliegend","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"41",41,"Monbijou-Park","46.94187","7.43462","521.4",4,"Stadtgrün","ja","Lampe","Betonweg","Rasenplatz, Bäume","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"42",36,"Viktoriarain","46.95519","7.44772","542.8",1,"TBA","ja","Verkehrsschild 30, auf ca 2m75","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"44",25,"Köniz Neubausiedlung","46.92781","7.42031","567.2",1,"Gemeinde Köniz","ja","Lampe","Asphaltweg, weisse Blockgebäude","Wiese","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"45",45,"Zytglogge","46.94828","7.44741","539.5",4,"BERNMOBIL","ja","Fahrplananzeigemasten","betonierter Platz, Strasse, Altstadt","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"47",8,"Wankdorf ESP","46.968","7.46248","550.5",1,"EWB","ja","Strassenlampe","Betonierter Platz, Blockgebäude (20m)","Bäume","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"48",48,"Viererfeld","46.9651","7.43821","573.1",1,"Sportplatz Viererfeld","ja","Scheinwerfermasten","Schrebergärten","Fussballfeld, Acker","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"49",18,"Aegertenstrasse 53","46.93861","7.44738","519.7",1,"TBA","ja","Verkehrsschild","Mehrfamilienhäuser, Strasse mit Trottoir","Gärten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"50",7,"Kreuzung Brunmatt- Schwarztorstrasse","46.9448","7.42713","528.6",1,"TBA","ja","Ampel","Hauptstrasse, Tramlinie, Blöcke auf beiden Seiten","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"51",73,"Obstberg, Wattenwylweg 32","46.94714","7.46407","561.6",1,"EWB","ja","Strassenlampe","Strasse, Einfamilienhäuser (gross),","Gärten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"52",63,"Wylergut, Jaunweg 11","46.96766","7.44922","526.8",1,"EWB","ja","Strassenlampe","Reihenfamilienhäuser, Strasse","Garten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"53",69,"Eisenbahnquartier","46.93719","7.42312","560.6",1,"EWB","ja","Strassenlampe","Strasse, Trottoir, Reihenfamilienhäuser","Garten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"55",55,"Bollwerk (Strasseninsel)","46.95152","7.44077","534.6",4,"TBA","ja","Ampel","Haupstrasse, gesammte Fläche versiegelt","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"60",41,"Bümpliz Stöckacker","46.94302","7.39587","556.7",1,"EWB","ja","Laterne","2x Hochhaus, Park, Sportplatz","Rasen, Busch","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"62",62,"Felsenhaldenweg","46.974","7.44116","492.4",4,"EWB","ja","Strassenlampe","Strasse, Einfamilienhäuser","Garten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"63",31,"Köniz Aussenquartier","46.92041","7.40995","577.2",1,"Gemeinde Köniz","ja","Strassenlampe","Blöcke, Trottoir, Strasse","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"64",64,"Bollwerk Referenz (Dach SBB)","46.95096","7.44046","536.2",4,"NABEL","ja","Meteostation","Hochhausdach, Strassenschlucht und Gleise daneben","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"65",57,"Eigerplatz","46.94077","7.43133","525.7",1,"BERNMOBIL","ja","Masten","Hauptstrasse, betonierter Platz","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"67",39,"Weyermannshaus Industrie","46.9489","7.40134","545.9",1,"EWB","ja","Strassenlampe","Strasse, Industriegebäude, Parkplätze","Vereinzelte Bäume","Schauen, dass wir gegen hinten richten wegen der Einfahrt, vorne seitlich nicht gut",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"68",4,"Uettligen Umland","46.98041","7.38733","590.2",1,"BKW","ja, neues Foto","Stromleitungsmasten, auf Hügel","Kiesweg","Busch, Wiese,Feld","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"69",61,"Westside Center","46.94555","7.37478","554.2",1,"EWB","ja","Parklaterne","Betonierter Platz, Blockgebäude (Center)","Blumenbeet","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"70",23,"Ostermundigen, Ahornstr 16","46.95575","7.49872","574.3",1,"Gemeinde Ostermundigen","ja","Strassenlampe","Strasse, Trottoir, Blöcke","Rasenfläche, einzelne Bäume","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"71",65,"Umland Bolligen","46.96682","7.50376","557.6",1,"BKW","ja","Stromleitungsmasten BKW FMB94","","Wiese, Feld","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"73",9,"Bremgartenfriedhof","46.95029","7.42015","552.4",1,"Stadtgrün","ja","Laterne","Parkanlage","Baumalee, Rasen","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"76",76,"Wabern, Viktoriastrasse 9","46.93122","7.45326","533.5",4,"Gemeinde Köniz","ja","Strassenlampe (Gmd Köniz 119)","Einfamilienhäuser, Strasse","Gärten (einer mit Tümpel)","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"78",78,"Dalmazibrücke","46.94446","7.44571","500.8",4,"EWB &TBA","ja","Strassenlampe","Betonbrücke über der Aare","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"79",79,"Umland Belp","46.89942","7.51182","513.1",4,"Energie Belp","ja","Stromleitungsmasten EVB52","","Feld","Koordinaten prüfen",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"80",60,"Roschistrasse","46.93508","7.43887","532.6",1,"EWB","ja","Strassenlampe","5-Stöckige Blöcke, Strasse mit Trottoir","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"83",83,"Stadtlabor","46.96312","7.46255","554.5",4,"AFU","nein","Holzpflock","Teerboden, Schulhaus, Stadion","Rasen","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"86",102,"Vorderes LG-Quartier, Falkenweg 5","46.9517","7.43714","561.6",1,"EWB","ja","Strassenlampe","Strasse, Mehrfamilienhäuser","Hecke, Garten","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"87",87,"Engehalde Stauwehr","46.96547","7.44504","494.5",4,"EWB","ja","Wehr, am Übergang","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"98",98,"Zollikofen Referenz 2m","46.9908","7.46403","552.8",4,"MeteoSchweiz","ja","Metallstange","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"99",99,"Zollikofen Referenz 3m","46.9908","7.46403","552.8",4,"MeteoSchweiz","ja","Metallstange","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"101",101,"Steinhölzliwald, (Zugang: Goumoenstr. 58)*****","46.93514","7.42805","573.7",1,"Burgergemeinde","ja","Baum","","Wald","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X1",29,"Paul Klee, Senke ""Familienspaziergang""","46.94861","7.47124","558.5",3,"TBA","ja","Verkehrsschild / Laterne","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X2",50,"Kreuzung Familienspaziergang / Laubeggstrasse","46.94644","7.46833","558.2",3,"EWB","ja","Kandelaber mitte Senke","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X3",5,"Sportplatz/Familiengarten vor Egelsee","46.94564","7.46666","552.7",3,"Immobilien Stadt Bern","ja","Zaun zwischen Gärten und Sportplatz","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X4",85,"Ensingerstrasse 28","46.94244","7.46132","554.1",3,"EWB","ja","Kandelaber","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X5",12,"Egelsee Süd I: Gantrischstrasse 52","46.94701","7.47194","564",3,"EWB","ja","Kandelaber","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X6",35,"Egelsee Süd II: Bürglenstrasse 28","46.94518","7.46887","566.3",3,"EWB","ja","Kandelaber","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X7",28,"Pärkli bei Eigerplatz","46.94192","7.43097","524.6",3,"BernMobil","ja","Dunkler Pfosten (mittlerer der 3 Seite Belpstrasse), glaube es ist ein kleiner","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X8",11,"Viererfeld Veloweg","46.96249","7.43982","562.8",3,"EWB","ja","Kandelaber zw. Strasse & Veloweg, rechts vom Kasten","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X9",77,"Viererfeld Wald ","46.96406","7.43582","576.1",3,"Burgergemeinde","nein","Baum oder Verkehrsschild (Weg)","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X10",40,"Rathausgasse I: St. Peter & Paul Kirche","46.94858","7.45193","533.1",3,"TBA","ja","Verkehrsschild vor Kirche","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X11",3,"Rathausgasse II: ca. Höhe Taube (Bar)","46.94851","7.44925","536.6",3,"TBA","ja","Parkschild","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X12",15,"Waisenhausplatz I (Ostseite): Vor Rest. Grissini","46.9497","7.44415","539.2",3,"TBA","ja","Verkehrsschild; Achtung Pfosten ist schräg!","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X13",74,"Waisenhausplatz II (Westseite): Vor Rest. Luce","46.94917","7.44437","539.1",3,"TBA","ja","Verkehrsschild","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X14",47,"Waisenhausplatz III (Mitte): Neben Brunnen","46.94983","7.44418","539",3,"EWB","ja","Kandelaber","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X15",54,"Waisenhausplatz IV (Pocketpark): vor Starbucks","46.94879","7.44376","541.5",3,"TBA","ja","Verkehrsschild","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"",NA,"",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Bleibt (1) = 45",NA,"Hängt bereits (4) = 19",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Neu (3) = 15",NA,"_prov: noch nicht festgelegt oder fotografiert",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"",NA,"*****",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"43",NA,"Steinhölzliwald: ",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"",NA,"Goumoenstr 58, kleiner Weg über Wiese, bei Findlingen links abbiegen und Pflastersteinweg folgen. Bei der Verzweigung nicht abbiegen, sondern in der geraden Verlängerung des Pfades wenige Meter weiter (VGL Fotos), einfach so, dass man es vom Weg aus nicht sieht, ist in der Nähe von Ilexpflanze!",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"",NA,"",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"38",NA,"Bremgartenwald:",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"",NA,"Entlang der Länggasstrasse geradeaus in den Wald hinein. Bei 5-Weg Kreuzung weiter gerade aus und nach ca 50m links abbiegen ca 20m in den Wald hinein.",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"",NA,"",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"25",NA,"Umland Köniz:",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"",NA,"Nach Moos b. Köniz nach rechts über Bahnübergang, dann links abbiegen, auf der Kuppel beim Starkstrommasten auf dem Feld",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"",NA,"",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"6",NA,"Dählhölzli-Wald:",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"",NA,"Bei Seilpark rechts an Fahrverbotstafel vorbe, kleiner Weg entlang und geradeaus in den Wald hinein (Verlängerung des Weges). Dann ca 50m bevor man wieder auf den Weg kommt unten am Hang (Bänkli vor Baumstrunk)",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"",NA,"",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"X9",NA,"Viererfeld Wald",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"",NA,"Ein bisschen weiter rein in den Wald, eine Buche nehmen, nicht zu dick, schön gerade",NA,NA,"",NA,"","","","","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"�..NUMMER_2018","Nummer_2019","STANDORT","NORD_CHTOPO","OST_CHTOPO","ELEV_CHTOPO","STATUS","ZUSTAENDIG","FOTO","BEFESTIGUNG","BEBAUUNG","VEGETATION","Notizen"
+"1",16,"Bubenbergplatz","46.94729","7.43849","542.5",1,"BERNMOBIL","ja","Masten","Tramlinie, Hauptstrasse","",""
+"2",86,"Ostermundigen, Lötschenstr 13","46.95289","7.48707","551.5",1,"Gemeinde Ostermundigen","ja","Strassenlampe","Strasse, Einfamilienhäuser","Gärten",""
+"4",82,"Thunplatz","46.94065","7.45822","551.6",1,"BERNMOBIL","ja","Tramampel","versiegelter Platz, Tramlinie, Kreisel","",""
+"6",33,"Dählhölzli-Wald *****","46.93798","7.45656","535.2",1,"Burgergemeinde","ja","Baum (Fichte)","","Mischwald, Fichte + Buche",""
+"9",71,"Hirschengraben","46.94658","7.43786","540.3",2,"EWB","Lichtmasten","Laternenpfosten (zwischen Sitzbänken)","Kiesplatz, Strasse, Sandsteingebäude","Baumallee (Platanen)",""
+"10",42,"Gerechtigkeitsgasse 55","46.94813","7.45351","532",1,"TBA","ja","Verkehrsschild","Pflastersteinstrasse, Sandsteingebäude, Altstadt","",""
+"12",68,"Gleisfeld Welle","46.94832","7.43365","540.1",1,"SBB","ja","Lichtmasten","Gleise, Schotter","",""
+"13",13,"Egelsee","46.94471","7.46442","549.2",4,"??? (egal)","ja","Lampe","See (Tümpel), Naturweg","",""
+"14",14,"Helvetiaplatz","46.94381","7.44885","530.8",4,"TBA","ja","Verkehrsschild","Strasse, Pflastersteinplatz, Brunnen","",""
+"15",70,"Bundesplatz","46.94692","7.44354","542.6",1,"TBA","ja","Verkehrsschild","Strasse, Bundeshaus, Wasserspiel","",""
+"17",17,"Rosengarten","46.95189","7.46019","568.4",4,"Stadtgrün","ja","Laterne","Kiesplatz","Hecken, Grasfläche, einzelne Bäume",""
+"18",52,"Umland Bümpliz","46.93362","7.36586","574.3",1,"EWB","ja","Stromleitungsmasten EWB40","","Feld",""
+"19",19,"Galgenfeld Neubausiedlung","46.95065","7.46992","579.1",4,"EWB","ja","Strassenlampe ??","Strasse, Blöcke","Gärten",""
+"20",26,"Inselspital","46.94719","7.42567","543.7",1,"BERNMOBIL","ja","Strassenlampe","Hochhäuser, Betonplatz, Strasse","",""
+"21",21,"Gaswerkareal Industrie EWB","46.9395","7.44213","503.1",4,"??? (EWB","","","","",""
+"22",22,"Matte Mühleplatz","46.94687","7.4562","499.6",4,"TBA","ja","Verkehrsschild","Parkplatz, Sandsteingebäude","",""
+"23",10,"Länggasse, Neufeldstrasse 135","46.95791","7.4354","558.6",1,"EWB","ja","Strassenlampe","Asphaltweg, Kiesfeld(3x3m)","Rasen",""
+"25",20,"Umland Köniz *****","46.90339","7.39462","656.7",1,"BKW","ja","BKW Masten 9 auf ca 2m80","","Wiese, Feld",""
+"26",58,"Murifeld (vor Wohnturm 3)","46.93919","7.48007","553.1",1,"EWB","ja","Lampe","Asphaltweg, Hochhäuser","Einzelne Bäume, grosse Rasenfläche",""
+"27",30,"Galgenfeld Industrie","46.95555","7.47194","563.7",1,"EWB","ja","Strassenlampe","Strasse, Industrie (Recycling Blech)","",""
+"28",46,"Autobahnausfahrt Wankdorf","46.96717","7.46968","547.6",1,"EWB","ja","Masten","Strasse, Brücke, Autobahn, Viel Verkehr","",""
+"31",1,"VonRoll PH","46.95292","7.42253","553.8",1,"Uni Bern (VonRoll) & EWB","ja","Lichtmasten","Betonierter Platz, Gebäude","",""
+"32",80,"Elfenau Kreuzung Hofmeister- Matterstrasse (Wegli)","46.9356","7.46954","544.6",1,"EWB","ja","Strassenlampe","Asphaltweg, Mehrfamilienhäuser","Links und rechts Gärten",""
+"33",59,"Schlossmatte Familiengärten","46.94211","7.41689","548.4",1,"Stadtgrün","ja","Fahnenmasten","Schrebergärten, Kiesweg, Gartenhäuser","Gärten",""
+"34",2,"Europaplatz","46.94333","7.40633","555.5",1,"BERNMOBIL","ja","Masten","Strasse, betonierter Platz, Brücke, Verkehr","",""
+"35",6,"Bümpliz Fröschmattstrasse","46.9402","7.38371","561.9",1,"EWB","ja","Strassenlampe","Strasse, Mehrfamilienhäuser","Garten",""
+"36",38,"Spiegel","46.92607","7.43739","619.8",1,"Gemeinde Köniz","ja","Strassenlampe","Strasse, Einfamilienhäuser, Teich","Garten",""
+"37",37,"Lorraine, Steckweg 15","46.95896","7.44514","538.1",4,"EWB","ja","Strassenlampe","zwei Blöcke","Garten",""
+"38",32,"Bremgartenwald *****","46.95739","7.42128","552.3",1,"Burgergemeinde","ja","Baum","","Wald",""
+"39",53,"Breitenrain, Waffenweg","46.96174","7.45191","554.9",1,"TBA","ja","Verkehrsschild 2m85","Kreuzung","Garten",""
+"40",34,"Kasernenareal","46.95696","7.45802","559.3",1,"Kasernenareal","ja","Strassenlampe","Sandsteingebäude~30m","Rasen, Parkanliegend",""
+"41",41,"Monbijou-Park","46.94187","7.43462","521.4",4,"Stadtgrün","ja","Lampe","Betonweg","Rasenplatz, Bäume",""
+"42",36,"Viktoriarain","46.95519","7.44772","542.8",1,"TBA","ja","Verkehrsschild 30, auf ca 2m75","","",""
+"44",25,"Köniz Neubausiedlung","46.92781","7.42031","567.2",1,"Gemeinde Köniz","ja","Lampe","Asphaltweg, weisse Blockgebäude","Wiese",""
+"45",45,"Zytglogge","46.94828","7.44741","539.5",4,"BERNMOBIL","ja","Fahrplananzeigemasten","betonierter Platz, Strasse, Altstadt","",""
+"47",8,"Wankdorf ESP","46.968","7.46248","550.5",1,"EWB","ja","Strassenlampe","Betonierter Platz, Blockgebäude (20m)","Bäume",""
+"48",48,"Viererfeld","46.9651","7.43821","573.1",1,"Sportplatz Viererfeld","ja","Scheinwerfermasten","Schrebergärten","Fussballfeld, Acker",""
+"49",18,"Aegertenstrasse 53","46.93861","7.44738","519.7",1,"TBA","ja","Verkehrsschild","Mehrfamilienhäuser, Strasse mit Trottoir","Gärten",""
+"51",73,"Obstberg, Wattenwylweg 32","46.94714","7.46407","561.6",1,"EWB","ja","Strassenlampe","Strasse, Einfamilienhäuser (gross),","Gärten",""
+"52",63,"Wylergut, Jaunweg 11","46.96766","7.44922","526.8",1,"EWB","ja","Strassenlampe","Reihenfamilienhäuser, Strasse","Garten",""
+"53",69,"Eisenbahnquartier","46.93719","7.42312","560.6",1,"EWB","ja","Strassenlampe","Strasse, Trottoir, Reihenfamilienhäuser","Garten",""
+"55",55,"Bollwerk (Strasseninsel)","46.95152","7.44077","534.6",4,"TBA","ja","Ampel","Haupstrasse, gesammte Fläche versiegelt","",""
+"60",41,"Bümpliz Stöckacker","46.94302","7.39587","556.7",1,"EWB","ja","Laterne","2x Hochhaus, Park, Sportplatz","Rasen, Busch",""
+"62",62,"Felsenhaldenweg","46.974","7.44116","492.4",4,"EWB","ja","Strassenlampe","Strasse, Einfamilienhäuser","Garten",""
+"63",31,"Köniz Aussenquartier","46.92041","7.40995","577.2",1,"Gemeinde Köniz","ja","Strassenlampe","Blöcke, Trottoir, Strasse","",""
+"65",57,"Eigerplatz","46.94077","7.43133","525.7",1,"BERNMOBIL","ja","Masten","Hauptstrasse, betonierter Platz","",""
+"67",39,"Weyermannshaus Industrie","46.9489","7.40134","545.9",1,"EWB","ja","Strassenlampe","Strasse, Industriegebäude, Parkplätze","Vereinzelte Bäume","Schauen, dass wir gegen hinten richten wegen der Einfahrt, vorne seitlich nicht gut"
+"68",4,"Uettligen Umland","46.98041","7.38733","590.2",1,"BKW","ja, neues Foto","Stromleitungsmasten, auf Hügel","Kiesweg","Busch, Wiese,Feld",""
+"69",61,"Westside Center","46.94555","7.37478","554.2",1,"EWB","ja","Parklaterne","Betonierter Platz, Blockgebäude (Center)","Blumenbeet",""
+"70",23,"Ostermundigen, Ahornstr 16","46.95575","7.49872","574.3",1,"Gemeinde Ostermundigen","ja","Strassenlampe","Strasse, Trottoir, Blöcke","Rasenfläche, einzelne Bäume",""
+"71",65,"Umland Bolligen","46.96682","7.50376","557.6",1,"BKW","ja","Stromleitungsmasten BKW FMB94","","Wiese, Feld",""
+"73",9,"Bremgartenfriedhof","46.95029","7.42015","552.4",1,"Stadtgrün","ja","Laterne","Parkanlage","Baumalee, Rasen",""
+"76",76,"Wabern, Viktoriastrasse 9","46.93122","7.45326","533.5",4,"Gemeinde Köniz","ja","Strassenlampe (Gmd Köniz 119)","Einfamilienhäuser, Strasse","Gärten (einer mit Tümpel)",""
+"78",78,"Dalmazibrücke","46.94446","7.44571","500.8",4,"EWB &TBA","ja","Strassenlampe","Betonbrücke über der Aare","",""
+"79",79,"Umland Belp","46.89942","7.51182","513.1",4,"Energie Belp","ja","Stromleitungsmasten EVB52","","Feld","Koordinaten prüfen"
+"80",60,"Roschistrasse","46.93508","7.43887","532.6",1,"EWB","ja","Strassenlampe","5-Stöckige Blöcke, Strasse mit Trottoir","",""
+"83",83,"Stadtlabor","46.96312","7.46255","554.5",4,"AFU","nein","Holzpflock","Teerboden, Schulhaus, Stadion","Rasen",""
+"86",102,"Vorderes LG-Quartier, Falkenweg 5","46.9517","7.43714","561.6",1,"EWB","ja","Strassenlampe","Strasse, Mehrfamilienhäuser","Hecke, Garten",""
+"87",87,"Engehalde Stauwehr","46.96547","7.44504","494.5",4,"EWB","ja","Wehr, am Übergang","","",""
+"98",98,"Zollikofen Referenz 2m","46.9908","7.46403","552.8",4,"MeteoSchweiz","ja","Metallstange","","",""
+"99",99,"Zollikofen Referenz 3m","46.9908","7.46403","552.8",4,"MeteoSchweiz","ja","Metallstange","","",""
+"101",101,"Steinhölzliwald, (Zugang: Goumoenstr. 58)*****","46.93514","7.42805","573.7",1,"Burgergemeinde","ja","Baum","","Wald",""
+"X1",29,"Paul Klee, Senke ""Familienspaziergang""","46.94861","7.47124","558.5",3,"TBA","ja","Verkehrsschild / Laterne","","",""
+"X2",50,"Kreuzung Familienspaziergang / Laubeggstrasse","46.94644","7.46833","558.2",3,"EWB","ja","Kandelaber mitte Senke","","",""
+"X5",12,"Egelsee Süd I: Gantrischstrasse 52","46.94701","7.47194","564",3,"EWB","ja","Kandelaber","","",""
+"X6",35,"Egelsee Süd II: Bürglenstrasse 28","46.94518","7.46887","566.3",3,"EWB","ja","Kandelaber","","",""
+"X7",28,"Pärkli bei Eigerplatz","46.94192","7.43097","524.6",3,"BernMobil","ja","Dunkler Pfosten (mittlerer der 3 Seite Belpstrasse), glaube es ist ein kleiner","","",""
+"X8",11,"Viererfeld Veloweg","46.96249","7.43982","562.8",3,"EWB","ja","Kandelaber zw. Strasse & Veloweg, rechts vom Kasten","","",""
+"X9",77,"Viererfeld Wald ","46.96406","7.43582","576.1",3,"Burgergemeinde","nein","Baum oder Verkehrsschild (Weg)","","",""
+"X10",40,"Rathausgasse I: St. Peter & Paul Kirche","46.94858","7.45193","533.1",3,"TBA","ja","Verkehrsschild vor Kirche","","",""
+"X11",3,"Rathausgasse II: ca. Höhe Taube (Bar)","46.94851","7.44925","536.6",3,"TBA","ja","Parkschild","","",""
+"X12",15,"Waisenhausplatz I (Ostseite): Vor Rest. Grissini","46.9497","7.44415","539.2",3,"TBA","ja","Verkehrsschild","","",""
+"X13",74,"Waisenhausplatz II (Westseite): Vor Rest. Luce","46.94917","7.44437","539.1",3,"TBA","ja","Verkehrsschild","","",""
+"X14",47,"Waisenhausplatz III (Mitte): Neben Brunnen","46.94983","7.44418","539",3,"EWB","ja","Kandelaber","","",""
+"X15",54,"Waisenhausplatz IV (Pocketpark): vor Starbucks","46.94879","7.44376","541.5",3,"TBA","ja","Verkehrsschild","","",""

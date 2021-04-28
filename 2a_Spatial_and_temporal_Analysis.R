@@ -6,8 +6,7 @@
 # radii around every bicycle measurement.
 
 # SET WORKING DIRECTORY
-setwd("C:/Users/Lukas/Desktop/HiWI/Paper_Netatmo_Lukas") # personal laptop
-# setwd("/scratch3/lukas/HiWi/Paper_Netatmo_Lukas/") # GIUB computer
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # install libraries
 library("measurements") #for converting lat/lon in degrees,min,sec to decimal degrees
@@ -51,11 +50,11 @@ for (f in files){
 }; rm(f, files)
 
 # cws
-files <- list.files(path="output_reworked/0_pre_processing_orig/cws_be_08/")
+files <- list.files(path="output_reworked/0_pre_processing_orig/cws_be_2019/")
 for (f in files){
   print(f)
   name <- substr(f,1,nchar(f)-4)
-  assign(name,read.csv(file=paste0("output_reworked/0_pre_processing_orig/cws_be_08/",f),
+  assign(name,read.csv(file=paste0("output_reworked/0_pre_processing_orig/cws_be_2019/",f),
                        header = T, sep = ","))
   rm(name)
 }; rm(f, files)
@@ -73,8 +72,8 @@ for (f in files){
 
 # Convert times to POSIX --------------------------------------------------
 
-for (i in 1:length(cws_be_08_bicycle_time_orig)){
-  cws_be_08_bicycle_time_orig[,i] <- as.POSIXct(as.character(cws_be_08_bicycle_time_orig[,i]), 
+for (i in 1:length(cws_be_2019_bicycle_time_orig)){
+  cws_be_2019_bicycle_time_orig[,i] <- as.POSIXct(as.character(cws_be_2019_bicycle_time_orig[,i]), 
                                                 tz = "Europe/Berlin")
 }
 
@@ -320,8 +319,7 @@ var(cws_analysis_radius_300_dt_900.csv$cws_be_08_temp_difference_min_T_filter, n
 
 # loop through every bicycle measurement (=timestep, i) and write the following to new columns:
 #define
-rad <- c(100,150,200,250,300,400,500,600,
-         700,800,900,1000,1500,2000,3000) # search radii
+rad <- c(200,500) # search radii
 p <- 1 # power parameter for the inverse spatial distance function
 
 ### log for loop ###

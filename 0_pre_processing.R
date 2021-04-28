@@ -123,9 +123,9 @@ log$Log_5 <- NULL
 log$Log_7 <- NULL
 log$Log_64 <- NULL
 log$Log_85 <- NULL
-log$Log_100_AFU_REF_2.45m <- NULL
-log$Log_999_REF_ZOLL_HAUS <- NULL
-log$Log_98_REF_ZOLL_2m <- NULL
+#log$Log_100_AFU_REF_2.45m <- NULL
+#log$Log_999_REF_ZOLL_HAUS <- NULL
+#log$Log_98_REF_ZOLL_2m <- NULL
 
 #change all temperature values to numeric
 for(i in 2: length(log[1,])){
@@ -208,17 +208,18 @@ log$date_time_gmt_plus_2
 
 # read logger metadata
 log_meta <- read.csv2(file = "Raw Data/Loggerdaten_2019_JJA/Standorte_2019_DEF.csv",
-                      header = TRUE, sep = ",", stringsAsFactors = F)
+                      header = TRUE, sep = ";", stringsAsFactors = F)
 
 # remove measurements from Log_100 (erronous measurements) and Log_5, Log_7, Log_64, Log_85 (rooftop stations)
 # and Log_999, Log_98 (additional measurements from Zollikofen Meteoschweiz Location)
-log_meta$Log_5 <- NULL
-log_meta$Log_7 <- NULL
-log_meta$Log_64 <- NULL
-log_meta$Log_85 <- NULL
-log_meta$Log_100_AFU_REF_2.45m <- NULL
-log_meta$Log_999_REF_ZOLL_HAUS <- NULL
-log_meta$Log_98_REF_ZOLL_2m <- NULL
+#log_meta$Log_5 <- NULL
+#log_meta$Log_7 <- NULL
+#log_meta$Log_64 <- NULL
+#log_meta$Log_85 <- NULL
+#log_meta$Log_100_AFU_REF_2.45m <- NULL
+#log_meta$Log_999_REF_ZOLL_HAUS <- NULL
+#log_meta$Log_98_REF_ZOLL_2m <- NULL
+log_meta<-log_meta[!(log_meta$Nummer_2019==5 | log_meta$Nummer_2019==7 | log_meta$Nummer_2019==64 | log_meta$Nummer_2019==85),]
 
 # The following code is unused and can be ignored (was already commented out by Lukas)
 # append log_meta to log based on common column with logger number
@@ -243,17 +244,6 @@ for(i in 1:(length(bicycle$Temp.degC)-7)){
   else {bicycle$Equal_Temp_Flag[i:(i+7)]<-FALSE
   }
 }
-
-
-#TODO: Where is the number of sats information?
-# Flag when Nbr of Sats <4?
-#for (i in 1:length(bicycle$Nbr.of.Sats)){
-#  if(bicycle$Nbr.of.Sats[i]<=4){
-#    bicycle$NbrofSats_Flag[i]<-TRUE}
-#  else {bicycle$NbrofSats_Flag[i]<-FALSE
-#  }
-#}
-
 
 # Flag physically impossible and implausible values for whole measurement period (Implausible_Flag)
 # remove temperature values that deviate more than 3.5 standard deviation from mean
@@ -367,37 +357,37 @@ cws_be_2019_bicycle_time_orig_dt <- data.frame()
 cws_be_2019_bicycle_time_orig <- data.frame()
 cws_be_2019_bicycle_ta_int_orig <- data.frame()
 
-# # Calculate cws temporal distance
-# # loop through every CWS'
-# for (j in 1:ncol(df_time_orig)){
-#  print(paste("CWS",j))
-#  # loop through every bicycle measurement
-#  for (i in 1:nrow(bicycle)){
-#    # find min temporal distance (=closest measurement) between every bicylce measurement
-#    # and the 48 CWS measurements and write to new df
-#    min_dist <- which(abs(as.numeric(c(df_time_orig[,j]) - as.numeric(bicycle$TIMESTAMP_CEST[i]),
-#                                     unit = "secs")) <= min(abs(as.numeric(c(df_time_orig[,j]) - as.numeric(bicycle$TIMESTAMP_CEST[i]),
-#                                                                           unit = "secs")), na.rm =T))[1]
-#    # the time difference in seconds between cws and bicycle
-#    dist_time <- (as.numeric(c(df_time_orig[min_dist,j]) - as.numeric(bicycle$TIMESTAMP_CEST[i]),
-#                        unit = "secs"))
-
-#    # write the minimum distance time to new df
-#    cws_be_2019_bicycle_time_orig[i,j] <- df_time_orig[min_dist,j]
-#    cws_be_2019_bicycle_ta_int_orig[i,j] <- df_ta_int_orig[min_dist,j]
-
-#    # write difference in seconds to new df
-#    cws_be_2019_bicycle_time_orig_dt[i,j] <- dist_time
-#  }; rm(i)
-# };rm(j)
+# Calculate cws temporal distance
+# loop through every CWS'
+for (j in 1:ncol(df_time_orig)){
+ print(paste("CWS",j))
+ # loop through every bicycle measurement
+ for (i in 1:nrow(bicycle)){
+   # find min temporal distance (=closest measurement) between every bicylce measurement
+   # and the 48 CWS measurements and write to new df
+   min_dist <- which(abs(as.numeric(c(df_time_orig[,j]) - as.numeric(bicycle$TIMESTAMP_CEST[i]),
+                                    unit = "secs")) <= min(abs(as.numeric(c(df_time_orig[,j]) - as.numeric(bicycle$TIMESTAMP_CEST[i]),
+                                                                          unit = "secs")), na.rm =T))[1]
+   # the time difference in seconds between cws and bicycle
+   dist_time <- (as.numeric(c(df_time_orig[min_dist,j]) - as.numeric(bicycle$TIMESTAMP_CEST[i]),
+                       unit = "secs"))
+   
+   # write the minimum distance time to new df
+   cws_be_2019_bicycle_time_orig[i,j] <- df_time_orig[min_dist,j]
+   cws_be_2019_bicycle_ta_int_orig[i,j] <- df_ta_int_orig[min_dist,j]
+   
+   # write difference in seconds to new df
+   cws_be_2019_bicycle_time_orig_dt[i,j] <- dist_time
+ }; rm(i)
+};rm(j)
 
 
 # load the delta t tables (if values already calculated)
-# Calculate cws temporal distancecws_be_2019_bicycle_time_orig_dt <- read.csv(file = "output_reworked/0_pre_processing_orig/distance/cws_be_2019_bicycle_time_orig_dt.csv")
-cws_be_2019_bicycle_time_orig <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019_bicycle_time_orig.csv",
-                                        header = T)
-cws_be_2019_bicycle_ta_int_orig <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019_bicycle_ta_int_orig.csv",
-                                          header = T)
+#cws_be_2019_bicycle_time_orig_dt <- read.csv(file = "output_reworked/0_pre_processing_orig/distance/cws_be_2019_bicycle_time_orig_dt.csv")
+#cws_be_2019_bicycle_time_orig <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019_bicycle_time_orig.csv",
+#                                        header = T)
+#cws_be_2019_bicycle_ta_int_orig <- read.csv(file = "output_reworked/0_pre_processing_orig/cws_be_2019/cws_be_2019_bicycle_ta_int_orig.csv",
+#                                          header = T)
 
 # convert the time_orig values to POSIX (incase they were loaded in and not calculated freshly)
 for (i in 1:length(length(cws_be_2019_bicycle_time_orig))){
@@ -489,7 +479,7 @@ colnames(log_meta_numeric) <- c("lon","lat")
 dist_log_bicycle <- as.data.frame(pointDistance(bicycle[,c("X","Y")],
                                                 log_meta_numeric[,c("lon","lat")], lonlat = TRUE))
 
-names(dist_log_bicycle) <- names(log[1:length(log[1,])])[-(1:2)]
+names(dist_log_bicycle) <- names(log[1:length(log[1,])])[-(0:2)]
 
 
 dist_cws_be_2019_bicycle <- as.data.frame(pointDistance(bicycle[,c("X","Y")],
