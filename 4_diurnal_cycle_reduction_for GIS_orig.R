@@ -1,8 +1,7 @@
 # Netatmo statistical analysis
 
 # SET WORKING DIRECTORY
-setwd("C:/Users/Lukas/Desktop/HiWI/Paper_Netatmo_Lukas") # personal laptop
-# setwd("/scratch3/lukas/HiWi/Paper_Netatmo_Lukas/") # GIUB computer
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # install libraries
 library("measurements") #for converting lat/lon in degrees,min,sec to decimal degrees
@@ -56,14 +55,14 @@ log_spatial_distance <- cbind(Date.Time, dist_log_bicycle)
 
 # log_list
 l <- list.files(path="output_reworked/2_spatial_and_temporal_analysis_reworked/log_analysis/")
-log_list = lapply(paste0("output_reworked/2_spatial_analysis_reworked/log_analysis/",l), read.csv2)
+log_list = lapply(paste0("output_reworked/2_spatial_and_temporal_analysis_reworked/log_analysis/",l), read.csv2)
 names(log_list) <- c(substr(l[1:length(l)],14,nchar(l)-4)); rm(l)
 
 # cws_list
-c <- list.files(path="output_reworked/2_spatial_and_temporal_analysis_reworked/cws_analysis")
-cws_list = lapply(paste0("output_reworked/2_spatial_and_temporal_analysis_reworked/cws_analysis/",c), 
-                  function(i){read.csv2(i, stringsAsFactors = F)})
-names(cws_list) <- c(substr(c[1:length(c)],14,nchar(c)-4)); rm(c)
+#c <- list.files(path="output_reworked/2_spatial_and_temporal_analysis_reworked/cws_analysis")
+#cws_list = lapply(paste0("output_reworked/2_spatial_and_temporal_analysis_reworked/cws_analysis/",c), 
+#                  function(i){read.csv2(i, stringsAsFactors = F)})
+#names(cws_list) <- c(substr(c[1:length(c)],14,nchar(c)-4)); rm(c)
 
 
 # transect means
@@ -80,13 +79,13 @@ cws_transect_means <- read.csv(file="output_reworked/1b_processing_transect_mean
 # Select only LOG rad200, rad500 and CWS rad500 (temporarily)
 log500 <- log_list$radius_500[,-1] # without first row, which is just index
 log200 <- log_list$radius_200[,-1] # without first row, which is just index
-cws500 <- cws_list$radius_500_dt_3600[,-1] # without first row, which is just index
+#cws500 <- cws_list$radius_500_dt_3600[,-1] # without first row, which is just index
 
 
 
 # combine bicycle, log200, cws500
-all <- cbind(bicycle,log200,cws500)
-log500_interpolation <- cbind(bicycle$Date.Time, log500)
+all <- cbind(bicycle,log200,log500)
+log500_interpolation <- cbind(bicycle$dateAndTime, log500)
 rm(log200,cws500, log500)
 
 # Select only 22:00 to 06:00
