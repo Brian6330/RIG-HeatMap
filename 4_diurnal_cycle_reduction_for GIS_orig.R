@@ -86,16 +86,14 @@ log200 <- log_list$radius_200[,-1] # without first row, which is just index
 # combine bicycle, log200, cws500
 all <- cbind(bicycle,log200,log500)
 log500_interpolation <- cbind(bicycle$dateAndTime, log500)
-rm(log200,cws500, log500)
 
 # Select only 22:00 to 06:00
-all_night <- subset(all, Date.Time >= "2018-08-07 22:00:00" & Date.Time <= "2018-08-08 06:00:00")
-log500_interpolation_night <- subset(log500_interpolation, Date.Time >= "2018-08-07 22:00:00" & Date.Time <= "2018-08-08 06:00:00")
-rm(all, log500_interpolation)
+all_night <- subset(all, dateAndTime >= "2019-06-26 22:00:00" & dateAndTime <= "2019-06-27 06:00:00")
+log500_interpolation_night <- subset(log500_interpolation, Date.Time >= "2019-06-26 22:00:00" & Date.Time <= "2019-06-27 06:00:00")
 log_mean_night <- data.frame(log_transect_means$NUMMER, log_transect_means$night_22_06)
 cws_mean_night <- data.frame(cws_transect_means$p_id, cws_transect_means$night_22_06)
 
-log_spatial_distance_night <- subset(log_spatial_distance, Date.Time >= "2018-08-07 22:00:00" & bicycle$Date.Time <= "2018-08-08 06:00:00")
+log_spatial_distance_night <- subset(log_spatial_distance, Date.Time >= "2019-06-26 22:00:00" & bicycle$Date.Time <= "2019-06-27 06:00:00")
 
 # combine log/cws transect means with metadata (coordinates)
 cws_mean_night <- inner_join(cws_mean_night, cws_be_2019_meta, by = c("cws_transect_means.p_id" = "p_id"))
@@ -103,16 +101,23 @@ log_mean_night <- inner_join(log_mean_night, log_meta, by = c("log_transect_mean
 
 
 # remove unecessary data
-rm(bicycle,cws_be_2019,cws_list,cws_transect_means,
-   log,log_list,log_transect_means, time_dist, log_meta, cws_be_2019_meta,
+rm(cws_be_2019,cws_transect_means,
+   log,log_list,log_transect_means, log_meta, cws_be_2019_meta,
    log_spatial_distance, Date.Time)
 
 
+# remove duplicated measurement station
+log_mean_night <- log_mean_night[!(log_mean_night$NORD_CHTOPO == 46.94302 & 
+                                     log_mean_night$OST_CHTOPO == 7.39587),]
+log_mean_night <- log_mean_night[-32,]
+
+
+#log <- log_mean_night[!(log_mean_night$log_transect_means.NUMMER == 41),]
 
 # difference between mean night T and current T (log) -------------
-
-# add night mean T of loggers within radius
-log_temp_night_weighted_mean <- (c(rep(NA, nrow(all_night))))
+# TODO Figure out what 'all_night' is
+# add night mean T of loggers within radius 
+log_temp_night_weighted_mean <- (c(rep(NA, nrow(log_mean_night))))
 
 # set parameters for loop
 # i <- 1339 (1337, 1338, 1339 have 4 loggers within the radius 200m)
@@ -131,19 +136,24 @@ for (i in 1:nrow(all_night)){
     temp_unlisted <- unlist(strsplit(temp_string, ","))
     temp_log_temp <- ((rep(NA, length(temp_unlisted))))
 
+    
     # distance of loggers within radius
     temp_dist_string <- paste0(all_night$log_dist[i]) # select the distances
     temp_dist_unlisted <- as.numeric(unlist(strsplit(temp_dist_string, ",")), digits = 5)
-    rm(temp_string, temp_dist_string)
+
     
     # extract columns from log_mean_night which match these logger names
     for (k in 1:length(temp_unlisted)){
-      temp_row_selection <- grepFn(temp_unlisted[k], log_mean_night, column='objectID') # temporarily save the correct row from log_mean_night
-      temp_row_selection <- temp_row_selection[temp_row_selection$objectID == (temp_unlisted[k]), ]
-      temp_log_temp[k] <- as.numeric(temp_row_selection[2], digits = 5) # save the transect mean T of that logger
+      if (temp_unlisted[k] == "V1"){
+        next
+      }
+      log_nummer <- as.numeric(sub(".*_", "", temp_unlisted[k]))
+      temp_row_selection <- grepFn(log_nummer, log_mean_night, column='log_transect_means.NUMMER') # temporarily save the correct row from log_mean_night
+      temp_row_selection <- temp_row_selection[temp_row_selection$log_transect_means.NUMMER == log_nummer, ]
+      temp_log_temp[k] <- temp_row_selection[2] # save the transect mean T of that logger
           }
   # calculate the distance weighted means of these mean night temperatures
-    log_temp_night_weighted_mean[i] <- weighted.mean(temp_log_temp, (1/((temp_dist_unlisted))^p), na.rm = TRUE) # mean of these temps
+    log_temp_night_weighted_mean[i] <- weighted.mean(as.integer(temp_log_temp, (1/((temp_dist_unlisted))^p)), na.rm = TRUE) # mean of these temps
   }
 }
 
@@ -168,10 +178,10 @@ for (i in 1:nrow(all_night)){
 }
 
 # plot to check
-plot(all_night$Date.Time, delta_T_log)
+plot(all_night$dateAndTime, delta_T_log)
 abline(h = 0)
 # we see that at the beginning of the night the values were warmer than the nights average.
-# As temperatures drop, the values are lower than average.
+# As temperatures drop, the values are lower than average, with an early sunrise.
 
 
 # subtract delta_T_log from bicycle T to get diurnaly adjusted T --------
@@ -179,27 +189,21 @@ abline(h = 0)
 bicycle_T_diurnal_corrected <- (c(rep(NA, nrow(all_night))))
 
 for (i in 1:nrow(all_night)){
-  bicycle_T_diurnal_corrected[i] <- all_night$Temp.C[i] - delta_T_log[i]
+  bicycle_T_diurnal_corrected[i] <- all_night$Temp.degC[i] - delta_T_log[i]
 }
 
 # plot to check
-plot(all_night$Date.Time, bicycle_T_diurnal_corrected)
+plot(all_night$dateAndTime, bicycle_T_diurnal_corrected)
 
 # check with bicycle data
-plot(all_night$Date.Time, all_night$Temp.C)
-plot(bicycle$RecNo, bicycle$Temp.C)
-abline(v = c(3564,5484))
-
-
-# remove temporary data
-rm(temp_dist_unlisted, temp_log_temp, temp_unlisted, k, p, i, temp_row_selection)
+plot(all_night$dateAndTime, all_night$Temp.degC)
+plot(bicycle$Z, bicycle$Temp.degC)
+abline(h=0)
 
 # add newly calculated data to all_night
 all_night$log_temp_night_weighted_mean <- log_temp_night_weighted_mean
 all_night$delta_T_log <- delta_T_log
 all_night$bicycle_T_diurnal_corrected <- bicycle_T_diurnal_corrected
-
-rm(log_temp_night_weighted_mean, delta_T_log, bicycle_T_diurnal_corrected)
 
 # plot the corrected mean data
 plot(all_night$log_temp_night_weighted_mean)
