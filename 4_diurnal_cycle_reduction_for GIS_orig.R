@@ -87,13 +87,17 @@ log200 <- log_list$radius_200[,-1] # without first row, which is just index
 all <- cbind(bicycle,log200,log500)
 log500_interpolation <- cbind(bicycle$dateAndTime, log500)
 
+start_hr = "23"
+start_time = paste("2019-06-26 ", start_hr, ":00:00", sep="")
+end_hr = "01"
+end_time = paste("2019-06-27 ", end_hr, ":00:00", sep="")
 # Select only 22:00 to 06:00
-all_night <- subset(all, dateAndTime >= "2019-06-26 22:00:00" & dateAndTime <= "2019-06-27 06:00:00")
-log500_interpolation_night <- subset(log500_interpolation, Date.Time >= "2019-06-26 22:00:00" & Date.Time <= "2019-06-27 06:00:00")
+all_night <- subset(all, dateAndTime >= start_time & dateAndTime <= end_time)
+log500_interpolation_night <- subset(log500_interpolation, Date.Time >= start_time & Date.Time <= end_time)
 log_mean_night <- data.frame(log_transect_means$NUMMER, log_transect_means$night_22_06)
 cws_mean_night <- data.frame(cws_transect_means$p_id, cws_transect_means$night_22_06)
 
-log_spatial_distance_night <- subset(log_spatial_distance, Date.Time >= "2019-06-26 22:00:00" & bicycle$Date.Time <= "2019-06-27 06:00:00")
+log_spatial_distance_night <- subset(log_spatial_distance, Date.Time >= start_time & bicycle$Date.Time <= end_time)
 
 # combine log/cws transect means with metadata (coordinates)
 cws_mean_night <- inner_join(cws_mean_night, cws_be_2019_meta, by = c("cws_transect_means.p_id" = "p_id"))
@@ -313,9 +317,6 @@ all_night$bicycle_T_diurnal_corrected <- bicycle_T_diurnal_corrected
 all_night$delta_T_log_interpolated <- delta_T_interpolated
 all_night$bicycle_T_diurnal_corr_interpolated <- bicycle_T_diurnal_corr_interpolated
 
-rm(log_temp_night_weighted_mean, delta_T_log, bicycle_T_diurnal_corrected)
-rm(delta_T_interpolated, bicycle_T_diurnal_corr_interpolated,b,f)
-
 # plot the corrected mean data
 plot(all_night$log_temp_night_weighted_mean)
 plot(all_night$bicycle_T_diurnal_corrected)
@@ -331,6 +332,7 @@ plot(all_night$bicycle_T_diurnal_corr_interpolated, type = "l")
 lines(all_night$bicycle_T_diurnal_corrected, col = "red")
 
 
+# TODO: After these lines if requred
 # only select columns from all night, which I really need
 # recno, datetime, lat, lon, bicycle T diurnal corrected
 bicycle_diurnal_corrected <- all_night[,c(1,2,7,8,38)]
@@ -439,7 +441,7 @@ dir.create("output_reworked/4_diurnal_cycle_reduction_for GIS/")
 
 # TODO: Only save the columns we want (but what do we want?--)
 write.csv(all_night,row.names = F,
-          file = paste0("output_reworked/4_diurnal_cycle_reduction_for GIS/","all_night_means_22_06.csv"))
+          file = paste0("output_reworked/4_diurnal_cycle_reduction_for GIS/","all_night_means_",start_hr,"_",end_hr,".csv"))
 
 # write.csv(bicycle_diurnal_corrected,row.names = F,
 #           file = paste0("output_reworked/4_diurnal_cycle_reduction_for GIS/","bicycle_diurnal_corrected.csv"))
