@@ -106,7 +106,7 @@ rm(cws_be_2019,cws_transect_means,
    log_spatial_distance, Date.Time)
 
 
-# remove duplicated measurement station
+# remove duplicated measurement station (#41 was there twice, change one occurence to 43 in the raw data)
 log_mean_night <- log_mean_night[!(log_mean_night$NORD_CHTOPO == 46.94302 & 
                                      log_mean_night$OST_CHTOPO == 7.39587),]
 log_mean_night <- log_mean_night[-32,]
@@ -115,7 +115,6 @@ log_mean_night <- log_mean_night[-32,]
 #log <- log_mean_night[!(log_mean_night$log_transect_means.NUMMER == 41),]
 
 # difference between mean night T and current T (log) -------------
-# TODO Figure out what 'all_night' is
 # add night mean T of loggers within radius 
 log_temp_night_weighted_mean <- (c(rep(NA, nrow(log_mean_night))))
 
@@ -269,19 +268,21 @@ for (i in 1:nrow(all_night)){
 
     # find weights (distances between bicycle - log)
     # forwards
-    delta_T_log_weights[i,1] <- (pointDistance(all_night[i,c("Longitude.E.","Latitude.N.")], # current bicycle point
-                                                            all_night[f,c("Longitude.E.","Latitude.N.")], lonlat = TRUE))
+    delta_T_log_weights[i,1] <- (pointDistance(all_night[i,c("X","Y")], # current bicycle point
+                                                            all_night[f,c("X","Y")], lonlat = TRUE))
     
     # backwards
-    delta_T_log_weights[i,2] <- (pointDistance(all_night[i,c("Longitude.E.","Latitude.N.")], # current bicycle point
-                                                        all_night[b,c("Longitude.E.","Latitude.N.")], lonlat = TRUE))
+    delta_T_log_weights[i,2] <- (pointDistance(all_night[i,c("X","Y")], # current bicycle point
+                                                        all_night[b,c("X","Y")], lonlat = TRUE))
     
 
     # calculate delta_T_interpolated
     delta_T_interpolated[i] <- weighted.mean(delta_T_log_unweighted[i,], (1/((delta_T_log_weights[i,]))^p))
-    bicycle_T_diurnal_corr_interpolated[i] <- all_night$Temp.C[i] - delta_T_interpolated[i]
+    bicycle_T_diurnal_corr_interpolated[i] <- all_night$Temp.degC[i] - delta_T_interpolated[i]
   }
 }
+
+# bicycle_T_diurnal_corr_interpolated is MVP!
 
 
 # test with plots
@@ -289,17 +290,15 @@ for (i in 1:nrow(all_night)){
 # delta T
 par(mfrow = c(1,2))
 plot(all_night$delta_T_log, col = "red", type = "l", xlim = c(0,50))
-abline(v=10)
 plot(delta_T_interpolated, type = "l", xlim = c(0,50)) # many more measurements are now included
-abline(v=10)
 # the two do not overlap though!
 
 # bicycle T (interpolated and not)
 par(mfrow = c(1,2))
 plot(all_night$bicycle_T_diurnal_corrected, col = "red", type = "l", xlim = c(0,500))
-abline(v=10)
+
 plot(bicycle_T_diurnal_corr_interpolated, type = "l", xlim = c(0,500)) # many more measurements are now included
-abline(v=10)
+
 par(mfrow = c(1,1))
 
 
@@ -339,7 +338,7 @@ bicycle_diurnal_corrected <- all_night[,c(1,2,7,8,38)]
 
 
 
-# Plots of Night delta_T, ammount of cws/log included ---------------------------
+# UNUSED Plots of Night delta_T, ammount of cws/log included ---------------------------
 
 
 plot(all_night$Date.Time, all_night$cws_be_08_temp_difference, pch = 3, main = "delta T [K]")
@@ -378,7 +377,7 @@ colnames(cws_mean_night) <- colnames
 
 
 
-# plots and analysis -------------------------------------------------------------------
+# UNUSED plots and analysis -------------------------------------------------------------------
 
 ### summary statistics
 # BCY
@@ -438,9 +437,10 @@ len_no_NA(log_mean_night$log_transect_means_night_22_06)
 
 dir.create("output_reworked/4_diurnal_cycle_reduction_for GIS/")
 
-# write.csv(all_night,row.names = F,
-#           file = paste0("output_reworked/4_diurnal_cycle_reduction_for GIS/","all_night_means_22_06.csv"))
-# 
+# TODO: Only save the columns we want (but what do we want?--)
+write.csv(all_night,row.names = F,
+          file = paste0("output_reworked/4_diurnal_cycle_reduction_for GIS/","all_night_means_22_06.csv"))
+
 # write.csv(bicycle_diurnal_corrected,row.names = F,
 #           file = paste0("output_reworked/4_diurnal_cycle_reduction_for GIS/","bicycle_diurnal_corrected.csv"))
 # 
