@@ -132,3 +132,6 @@ dmypy.json
 
 .RData
 .Rhistory
+ 
+.tif
+.DS_Store
