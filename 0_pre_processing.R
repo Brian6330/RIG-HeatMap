@@ -38,6 +38,9 @@ bicycle$TIMESTAMP_CEST <- as.POSIXct(bicycle$TIMESTAMP_CEST, tz = "GMT")
 # force to tz Europe/Berlin (=CEST) which changes times by +2h
 bicycle$TIMESTAMP_CEST <- with_tz(bicycle$TIMESTAMP_CEST, "Europe/Berlin")
 
+#convert dateAndTime var to CEST
+bicycle$dateAndTime <- as.character(bicycle$TIMESTAMP_CEST)
+
 
 # 
 # # define the transects (Z being the stops (at the GIUB or elsewhere), and A,B, C being the actual transects)
