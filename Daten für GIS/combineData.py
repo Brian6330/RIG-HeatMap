@@ -61,8 +61,12 @@ for i in range(2,len(log[0])):
     logno = log[0][i][4:]
     logM = findLogMeta(logno)
 
+    temp = 0
     for j in range(13,19):
-        concattedData22.append(["Logger", log[j][0], log[j][i], logM[0], logM[1], logM[2]])
+        temp += float(log[j][i])
+    
+    temp = round(temp/6,3)
+    concattedData22.append(["Logger", log[13][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
@@ -85,8 +89,12 @@ for i in range(2,len(log[0])):
     logno = log[0][i][4:]
     logM = findLogMeta(logno)
 
+    temp = 0
     for j in range(19,25):
-        concattedData23.append(["Logger", log[j][0], log[j][i], logM[0], logM[1], logM[2]])
+        temp += float(log[j][i])
+    
+    temp = round(temp/6,3)
+    concattedData23.append(["Logger", log[19][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
@@ -109,8 +117,12 @@ for i in range(2,len(log[0])):
     logno = log[0][i][4:]
     logM = findLogMeta(logno)
 
-    for j in range(35,31):
-        concattedData02.append(["Logger", log[j][0], log[j][i], logM[0], logM[1], logM[2]])
+    temp = 0
+    for j in range(25,31):
+        temp += float(log[j][i])
+    
+    temp = round(temp/6,3)
+    concattedData02.append(["Logger", log[25][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
@@ -133,8 +145,12 @@ for i in range(2,len(log[0])):
     logno = log[0][i][4:]
     logM = findLogMeta(logno)
 
+    temp = 0
     for j in range(31,37):
-        concattedData03.append(["Logger", log[j][0], log[j][i], logM[0], logM[1], logM[2]])
+        temp += float(log[j][i])
+    
+    temp = round(temp/6,3)
+    concattedData03.append(["Logger", log[31][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
@@ -156,9 +172,13 @@ while allnight[index][16][-8:-6] == "04":
 for i in range(2,len(log[0])):
     logno = log[0][i][4:]
     logM = findLogMeta(logno)
-
+    
+    temp = 0
     for j in range(49,55):
-        concattedData04.append(["Logger", log[j][0], log[j][i], logM[0], logM[1], logM[2]])
+        temp += float(log[j][i])
+    
+    temp = round(temp/6,3)
+    concattedData04.append(["Logger", log[49][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
@@ -183,8 +203,12 @@ for i in range(2,len(log[0])):
     logno = log[0][i][4:]
     logM = findLogMeta(logno)
 
+    temp = 0
     for j in range(55,61):
-        concattedData05.append(["Logger", log[j][0], log[j][i], logM[0], logM[1], logM[2]])
+        temp += float(log[j][i])
+    
+    temp = round(temp/6,3)
+    concattedData05.append(["Logger", log[55][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
