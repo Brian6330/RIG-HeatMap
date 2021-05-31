@@ -16,14 +16,14 @@ def readCSV(filename):
 
 files = os.listdir()
 
-concattedData22 = [["Typ", "Time", "Temp", "lon", "lat", "altitude"]]
-concattedData23 = [["Typ", "Time", "Temp", "lon", "lat", "altitude"]]
-concattedData00 = [["Typ", "Time", "Temp", "lon", "lat", "altitude"]]
-concattedData01 = [["Typ", "Time", "Temp", "lon", "lat", "altitude"]]
-concattedData02 = [["Typ", "Time", "Temp", "lon", "lat", "altitude"]]
-concattedData03 = [["Typ", "Time", "Temp", "lon", "lat", "altitude"]]
-concattedData04 = [["Typ", "Time", "Temp", "lon", "lat", "altitude"]]
-concattedData05 = [["Typ", "Time", "Temp", "lon", "lat", "altitude"]]
+concattedData22 = [["Typ", "ID", "Time", "Temp", "lon", "lat", "altitude"]]
+concattedData23 = [["Typ", "ID", "Time", "Temp", "lon", "lat", "altitude"]]
+concattedData00 = [["Typ", "ID", "Time", "Temp", "lon", "lat", "altitude"]]
+concattedData01 = [["Typ", "ID", "Time", "Temp", "lon", "lat", "altitude"]]
+concattedData02 = [["Typ", "ID", "Time", "Temp", "lon", "lat", "altitude"]]
+concattedData03 = [["Typ", "ID", "Time", "Temp", "lon", "lat", "altitude"]]
+concattedData04 = [["Typ", "ID", "Time", "Temp", "lon", "lat", "altitude"]]
+concattedData05 = [["Typ", "ID", "Time", "Temp", "lon", "lat", "altitude"]]
 
 for i in range(0, len(files)):
     if files[i] == "all_night_means_22_06.csv":
@@ -54,7 +54,7 @@ def findCwsMeta(cwsno):
 #22
 index = 1
 while allnight[index][16][-8:-6] == "22":
-    concattedData22.append(["Bicycle", allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
+    concattedData22.append(["Bicycle", 1, allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
     index += 1
 
 for i in range(2,len(log[0])):
@@ -66,7 +66,7 @@ for i in range(2,len(log[0])):
         temp += float(log[j][i])
     
     temp = round(temp/6,3)
-    concattedData22.append(["Logger", log[13][0], temp, logM[0], logM[1], logM[2]])
+    concattedData22.append(["Logger", 3, log[13][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
@@ -82,7 +82,7 @@ with open("Data/concattedData22.csv", 'w', newline="") as output:
 #23
 index = 232
 while allnight[index][16][-8:-6] == "23":
-    concattedData23.append(["Bicycle", allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
+    concattedData23.append(["Bicycle", 1, allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
     index += 1
 
 for i in range(2,len(log[0])):
@@ -94,13 +94,13 @@ for i in range(2,len(log[0])):
         temp += float(log[j][i])
     
     temp = round(temp/6,3)
-    concattedData23.append(["Logger", log[19][0], temp, logM[0], logM[1], logM[2]])
+    concattedData23.append(["Logger", 3, log[19][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
     cwsno = cws[0][index][:4]
     cwsM = findCwsMeta(cwsno)
-    concattedData23.append(["CWS", cws[4][index-1], cws[4][index], cwsM[0], cwsM[1], cwsM[2]])
+    concattedData23.append(["CWS", 2, cws[4][index-1], cws[4][index], cwsM[0], cwsM[1], cwsM[2]])
     index += 2
 
 with open("Data/concattedData23.csv", 'w', newline="") as output:
@@ -110,7 +110,7 @@ with open("Data/concattedData23.csv", 'w', newline="") as output:
 #00
 index = 591
 while allnight[index][16][-8:-6] == "00":
-    concattedData02.append(["Bicycle", allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
+    concattedData02.append(["Bicycle", 1, allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
     index += 1
 
 for i in range(2,len(log[0])):
@@ -122,13 +122,13 @@ for i in range(2,len(log[0])):
         temp += float(log[j][i])
     
     temp = round(temp/6,3)
-    concattedData02.append(["Logger", log[25][0], temp, logM[0], logM[1], logM[2]])
+    concattedData02.append(["Logger", 3, log[25][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
     cwsno = cws[0][index][:4]
     cwsM = findCwsMeta(cwsno)
-    concattedData02.append(["CWS", cws[5][index-1], cws[5][index], cwsM[0], cwsM[1], cwsM[2]])
+    concattedData02.append(["CWS", 2, cws[5][index-1], cws[5][index], cwsM[0], cwsM[1], cwsM[2]])
     index += 2
 
 with open("Data/concattedData00.csv", 'w', newline="") as output:
@@ -138,7 +138,7 @@ with open("Data/concattedData00.csv", 'w', newline="") as output:
 #01
 index = 943
 while allnight[index][16][-8:-6] == "01":
-    concattedData03.append(["Bicycle", allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
+    concattedData03.append(["Bicycle", 1, allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
     index += 1
 
 for i in range(2,len(log[0])):
@@ -150,13 +150,13 @@ for i in range(2,len(log[0])):
         temp += float(log[j][i])
     
     temp = round(temp/6,3)
-    concattedData03.append(["Logger", log[31][0], temp, logM[0], logM[1], logM[2]])
+    concattedData03.append(["Logger", 3, log[31][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
     cwsno = cws[0][index][:4]
     cwsM = findCwsMeta(cwsno)
-    concattedData03.append(["CWS", cws[6][index-1], cws[6][index], cwsM[0], cwsM[1], cwsM[2]])
+    concattedData03.append(["CWS", 2, cws[6][index-1], cws[6][index], cwsM[0], cwsM[1], cwsM[2]])
     index += 2
 
 with open("Data/concattedData01.csv", 'w', newline="") as output:
@@ -166,7 +166,7 @@ with open("Data/concattedData01.csv", 'w', newline="") as output:
 #04
 index = 1099
 while allnight[index][16][-8:-6] == "04":
-    concattedData04.append(["Bicycle", allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
+    concattedData04.append(["Bicycle", 1, allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
     index += 1
 
 for i in range(2,len(log[0])):
@@ -178,13 +178,13 @@ for i in range(2,len(log[0])):
         temp += float(log[j][i])
     
     temp = round(temp/6,3)
-    concattedData04.append(["Logger", log[49][0], temp, logM[0], logM[1], logM[2]])
+    concattedData04.append(["Logger", 3, log[49][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
     cwsno = cws[0][index][:4]
     cwsM = findCwsMeta(cwsno)
-    concattedData04.append(["CWS", cws[9][index-1], cws[9][index], cwsM[0], cwsM[1], cwsM[2]])
+    concattedData04.append(["CWS", 2, cws[9][index-1], cws[9][index], cwsM[0], cwsM[1], cwsM[2]])
     index += 2
 
 with open("Data/concattedData04.csv", 'w', newline="") as output:
@@ -194,7 +194,7 @@ with open("Data/concattedData04.csv", 'w', newline="") as output:
 #05
 index = 1288
 while allnight[index][16][-8:-6] == "05":
-    concattedData05.append(["Bicycle", allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
+    concattedData05.append(["Bicycle", 1, allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
     if index == len(allnight)-1:
         break
     index += 1
@@ -208,13 +208,13 @@ for i in range(2,len(log[0])):
         temp += float(log[j][i])
     
     temp = round(temp/6,3)
-    concattedData05.append(["Logger", log[55][0], temp, logM[0], logM[1], logM[2]])
+    concattedData05.append(["Logger", 3, log[55][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
     cwsno = cws[0][index][:4]
     cwsM = findCwsMeta(cwsno)
-    concattedData05.append(["CWS", cws[10][index-1], cws[10][index], cwsM[0], cwsM[1], cwsM[2]])
+    concattedData05.append(["CWS", 2, cws[10][index-1], cws[10][index], cwsM[0], cwsM[1], cwsM[2]])
     index += 2
 
 with open("Data/concattedData05.csv", 'w', newline="") as output:
