@@ -113,7 +113,7 @@ with open("Data(RawBicycle)/concattedData(RawBicycle)23.csv", 'w', newline="") a
 index = 1796
 while allnight[index][16][-8:-6] == "00":
     if (float(allnight[index][5]) > 0):
-        concattedData02.append(["Bicycle", 1, allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
+        concattedData00.append(["Bicycle", 1, allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
     index += 1
 
 for i in range(2,len(log[0])):
@@ -125,24 +125,24 @@ for i in range(2,len(log[0])):
         temp += float(log[j][i])
     
     temp = round(temp/6,3)
-    concattedData02.append(["Logger", 3, log[25][0], temp, logM[0], logM[1], logM[2]])
+    concattedData00.append(["Logger", 3, log[25][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
     cwsno = cws[0][index][:4]
     cwsM = findCwsMeta(cwsno)
-    concattedData02.append(["CWS", 2, cws[5][index-1], cws[5][index], cwsM[0], cwsM[1], cwsM[2]])
+    concattedData00.append(["CWS", 2, cws[5][index-1], cws[5][index], cwsM[0], cwsM[1], cwsM[2]])
     index += 2
 
 with open("Data(RawBicycle)/concattedData(RawBicycle)00.csv", 'w', newline="") as output:
     writer = csv.writer(output, delimiter=",")
-    writer.writerows(concattedData02)
+    writer.writerows(concattedData00)
 
 #01
 index = 2156
 while allnight[index][16][-8:-6] == "01":
     if (float(allnight[index][5]) > 0):
-        concattedData03.append(["Bicycle", 1, allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
+        concattedData01.append(["Bicycle", 1, allnight[index][16], allnight[index][5], allnight[index][13], allnight[index][14], allnight[index][15]])
     index += 1
 
 for i in range(2,len(log[0])):
@@ -154,16 +154,64 @@ for i in range(2,len(log[0])):
         temp += float(log[j][i])
     
     temp = round(temp/6,3)
-    concattedData03.append(["Logger", 3, log[31][0], temp, logM[0], logM[1], logM[2]])
+    concattedData01.append(["Logger", 3, log[31][0], temp, logM[0], logM[1], logM[2]])
 
 index = 2
 while index < len(cws[0]):
     cwsno = cws[0][index][:4]
     cwsM = findCwsMeta(cwsno)
-    concattedData03.append(["CWS", 2, cws[6][index-1], cws[6][index], cwsM[0], cwsM[1], cwsM[2]])
+    concattedData01.append(["CWS", 2, cws[6][index-1], cws[6][index], cwsM[0], cwsM[1], cwsM[2]])
     index += 2
 
 with open("Data(RawBicycle)/concattedData(RawBicycle)01.csv", 'w', newline="") as output:
+    writer = csv.writer(output, delimiter=",")
+    writer.writerows(concattedData01)
+
+#02
+
+for i in range(2,len(log[0])):
+    logno = log[0][i][4:]
+    logM = findLogMeta(logno)
+
+    temp = 0
+    for j in range(37,43):
+        temp += float(log[j][i])
+    
+    temp = round(temp/6,3)
+    concattedData02.append(["Logger", 3, log[37][0], temp, logM[0], logM[1], logM[2]])
+
+index = 2
+while index < len(cws[0]):
+    cwsno = cws[0][index][:4]
+    cwsM = findCwsMeta(cwsno)
+    concattedData02.append(["CWS", 2, cws[7][index-1], cws[6][index], cwsM[0], cwsM[1], cwsM[2]])
+    index += 2
+
+with open("Data(RawBicycle)/concattedData(RawBicycle)02.csv", 'w', newline="") as output:
+    writer = csv.writer(output, delimiter=",")
+    writer.writerows(concattedData02)
+
+#03
+
+for i in range(2,len(log[0])):
+    logno = log[0][i][4:]
+    logM = findLogMeta(logno)
+
+    temp = 0
+    for j in range(43,49):
+        temp += float(log[j][i])
+    
+    temp = round(temp/6,3)
+    concattedData03.append(["Logger", 3, log[43][0], temp, logM[0], logM[1], logM[2]])
+
+index = 2
+while index < len(cws[0]):
+    cwsno = cws[0][index][:4]
+    cwsM = findCwsMeta(cwsno)
+    concattedData03.append(["CWS", 2, cws[8][index-1], cws[6][index], cwsM[0], cwsM[1], cwsM[2]])
+    index += 2
+
+with open("Data(RawBicycle)/concattedData(RawBicycle)03.csv", 'w', newline="") as output:
     writer = csv.writer(output, delimiter=",")
     writer.writerows(concattedData03)
 
@@ -228,7 +276,7 @@ with open("Data(RawBicycle)/concattedData(RawBicycle)05.csv", 'w', newline="") a
     writer.writerows(concattedData05)
 
 #All
-allData= concattedData22 + concattedData23[1:] + concattedData02[1:] + concattedData03[1:] + concattedData04[1:] + concattedData05[1:]
+allData= concattedData22 + concattedData23[1:] + concattedData00[1:] + concattedData01[1:] + concattedData02[1:] + concattedData03[1:] + concattedData04[1:] + concattedData05[1:]
 with open("Data(RawBicycle)/concattedData(RawBicycle)All.csv", 'w', newline="") as output:
     writer = csv.writer(output, delimiter=",")
     writer.writerows(allData)
