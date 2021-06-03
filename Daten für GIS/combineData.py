@@ -180,7 +180,7 @@ index = 2
 while index < len(cws[0]):
     cwsno = cws[0][index][:4]
     cwsM = findCwsMeta(cwsno)
-    concattedData02.append(["CWS", 2, cws[7][index-1], cws[6][index], cwsM[0], cwsM[1], cwsM[2]])
+    concattedData02.append(["CWS", 2, cws[7][index-1], cws[7][index], cwsM[0], cwsM[1], cwsM[2]])
     index += 2
 
 with open("Data/concattedData02.csv", 'w', newline="") as output:
@@ -204,7 +204,7 @@ index = 2
 while index < len(cws[0]):
     cwsno = cws[0][index][:4]
     cwsM = findCwsMeta(cwsno)
-    concattedData03.append(["CWS", 2, cws[8][index-1], cws[6][index], cwsM[0], cwsM[1], cwsM[2]])
+    concattedData03.append(["CWS", 2, cws[8][index-1], cws[8][index], cwsM[0], cwsM[1], cwsM[2]])
     index += 2
 
 with open("Data/concattedData03.csv", 'w', newline="") as output:
