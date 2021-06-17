@@ -4,8 +4,8 @@ library("ggplot2")
 # SET WORKING DIRECTORY
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-loggers <- read.csv(file = "output_reworked/0_pre_processing_orig/log/log.csv")
-time <- loggers$log.date_time_gmt_plus_2
+loggers <- read.csv(file = "Formatted Data/log.csv", sep=";")
+time <- loggers$Time.HH
 
 # log_A should be the "urban" one. Title is also the filename.
 plot_temp_comparison <-
@@ -19,8 +19,9 @@ plot_temp_comparison <-
 				geom_line(aes(y = log_B), color = "blue") +
 				theme_minimal() +
 				coord_cartesian(ylim = c(15, 40)) +
+			  scale_x_continuous(label = c("20:00", "01:00", "06:00", "11:00", "16:00")) +
 				labs(
-					y = "Temperatur in °C",
+					y = "Temperatur in degrees Celsius",
 					x = "Zeit",
 					title = title,
 					subtitle = "Temperaturverlauf 06.26. 20 Uhr - 27.06. 16 Uhr, 2019. "
@@ -33,8 +34,9 @@ plot_temp_comparison <-
 				geom_line(aes(y = log_C), color = "green") +
 				theme_minimal() +
 				coord_cartesian(ylim = c(15, 40)) +
+			  scale_x_continuous(label = c("20:00", "01:00", "06:00", "11:00", "16:00")) +
 				labs(
-					y = "Temperatur in °C",
+					y = "Temperatur in degrees Celsius",
 					x = "Zeit",
 					title = title,
 					subtitle = "Temperaturverlauf 06.26. 20 Uhr - 27.06. 16 Uhr, 2019. "
