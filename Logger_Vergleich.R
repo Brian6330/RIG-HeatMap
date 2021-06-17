@@ -22,6 +22,7 @@ plot_temp_comparison <-
 				coord_cartesian(ylim = c(16, 38)) +
 			  scale_x_continuous(label = c("20:00", "01:00", "06:00", "11:00", "16:00")) +
 			  scale_colour_manual(name = "Loggerstation", values = c("black","blue"), labels = c(station_A, station_B)) + 
+			  geom_hline(yintercept = 20, color="red") + 
 			  labs(
 					y = "Temperatur in Grad Celsius",
 					x = "Zeit",
@@ -39,6 +40,7 @@ plot_temp_comparison <-
 				coord_cartesian(ylim = c(16, 38)) +
 			  scale_x_continuous(label = c("20:00", "01:00", "06:00", "11:00", "16:00")) +
 			  scale_color_manual(name = "Loggerstation", values = c("black", "blue", "green"), labels = c(station_A, station_B, station_C)) +
+			  geom_hline(yintercept = 20, color="red") + 
 			  labs(
 					y = "Temperatur in Grad Celsius",
 					x = "Zeit",
