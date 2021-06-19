@@ -21,8 +21,8 @@ plot_temp_comparison <-
 				theme_minimal() +
 				coord_cartesian(ylim = c(16, 38)) +
 			  scale_x_continuous(label = c("20:00", "01:00", "06:00", "11:00", "16:00")) +
-			  scale_colour_manual(name = "Loggerstation", values = c("black","blue"), labels = c(station_A, station_B)) + 
-			  geom_hline(yintercept = 20, color="red") + 
+			  scale_colour_manual(name = "Loggerstation", values = c("black","blue"), labels = c(station_A, station_B)) +
+			  geom_hline(yintercept = 20, color="red") +
 			  labs(
 					y = "Temperatur in Grad Celsius",
 					x = "Zeit",
@@ -40,7 +40,7 @@ plot_temp_comparison <-
 				coord_cartesian(ylim = c(16, 38)) +
 			  scale_x_continuous(label = c("20:00", "01:00", "06:00", "11:00", "16:00")) +
 			  scale_color_manual(name = "Loggerstation", values = c("black", "blue", "green"), labels = c(station_A, station_B, station_C)) +
-			  geom_hline(yintercept = 20, color="red") + 
+			  geom_hline(yintercept = 20, color="red") +
 			  labs(
 					y = "Temperatur in Grad Celsius",
 					x = "Zeit",
@@ -56,8 +56,8 @@ plot_temp_comparison(time, loggers$Log_61, loggers$Log_52, station_A="Westside",
 # Inselspital vs. Bremgartenfriedhof vs. Bremgartenwald
 plot_temp_comparison(time, loggers$Log_26, loggers$Log_9, loggers$Log_32, station_A="Inselspital", station_B="Bremgartenfriedhof", station_C="Bremgartenwald")
 
-# Schlossmatte Familiengärten vs. Europaplatz
-plot_temp_comparison(time, loggers$Log_59, loggers$Log_2, station_A="Schlossmatte Familiengarten", station_B="Europaplatz")
+# Europaplatz vs. Schlossmatte Familiengärten
+plot_temp_comparison(time, loggers$Log_2, loggers$Log_59, station_A="Europaplatz", station_B="Schlossmatte Familiengarten")
 
 # Viktoriarein vs. Kasernenareal
 plot_temp_comparison(time, loggers$Log_36, loggers$Log_34, station_A="Viktoriarein", station_B="Kasernenareal")
