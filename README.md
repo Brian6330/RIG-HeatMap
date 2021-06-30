@@ -1,5 +1,7 @@
 # RIG-HeatMap
 
+TODO: Rewrite before we hand-in the report in August!
+
 
 
 
