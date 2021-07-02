@@ -72,7 +72,7 @@ index = 2
 while index < len(cws[0]):
     cwsno = cws[0][index][:4]
     cwsM = findCwsMeta(cwsno)
-    concattedData22.append(["CWS", cws[3][index-1], cws[3][index], cwsM[0], cwsM[1], cwsM[2]])
+    concattedData22.append(["CWS", 2, cws[3][index-1], cws[3][index], cwsM[0], cwsM[1], cwsM[2]])
     index += 2
 
 with open("Data/concattedData22.csv", 'w', newline="") as output:
