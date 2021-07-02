@@ -42,9 +42,9 @@ bicycle$TIMESTAMP_CEST <- with_tz(bicycle$TIMESTAMP_CEST, "Europe/Berlin")
 bicycle$dateAndTime <- as.character(bicycle$TIMESTAMP_CEST)
 
 
-# 
+#
 # # define the transects (Z being the stops (at the GIUB or elsewhere), and A,B, C being the actual transects)
-# 
+#
 # Z0 <- c(1:30); A1 <- c(31:385); Z1 <- c(386:463); B1 <- c(464:717); Z2 <- c(718:739); C1 <- c(740:1204)
 # Z3 <- c(1205:1283); A2 <- c(1284:1700); Z4 <- c(1701:1713); B2 <- c(1714:2122); Z5 <- c(2123:2140); C2 <- c(2141:2745)
 # A3 <- c(2746:3104); Z6 <- c(3105:3122); B3 <- c(3123:3574); Z7 <- c(3575:3584); C3 <- c(3585:4026)
@@ -53,7 +53,7 @@ bicycle$dateAndTime <- as.character(bicycle$TIMESTAMP_CEST)
 
 
 # add column ROUTE and fill it with values as defined above
-# 
+#
 # Route <- c(rep("Z0", length(Z0)),rep("A1", length(A1)),rep("Z1", length(Z1)),rep("B1", length(B1)),
 #            rep("Z2", length(Z2)) ,rep("C1", length(C1)),rep("Z3", length(Z3)),
 #            rep("A2",length(A2)),rep("Z4", length(Z4)),
@@ -112,7 +112,7 @@ attributes(cws_be_2019$time)$tzone; cws_be_2019$time[1:20] # time zone is CEST =
 
 # only keep cws files from the time period of the bicycle transect time
 # this changes the format of the "time" column. Should be ok, but be aware
-cws_be_2019 <- cws_be_2019[cws_be_2019$time < "2019-06-27 16:00:00" 
+cws_be_2019 <- cws_be_2019[cws_be_2019$time < "2019-06-27 20:00:00"
                            & cws_be_2019$time >= "2019-06-26 20:00:00",]
 
 #### READ THE LOGGER DATA FROM MORITZ GUBLERS PHD PROJECT (log) ###
@@ -182,7 +182,7 @@ for (i in 1:length(log$date_time_gmt_plus_2)) {
 }
 
 # Only keep log data from the days of the bicycle transect, for some reason this reintroduces the AM and PM times, but works to filter days.
-log <- log[log$date_time_gmt_plus_2 <= "2019-06-27 16:00:00" & log$date_time_gmt_plus_2 >= "2019-06-26 20:00:00",]
+log <- log[log$date_time_gmt_plus_2 <= "2019-06-27 20:00:00" & log$date_time_gmt_plus_2 >= "2019-06-26 20:00:00",]
 
 # Test output
 log$date_time_gmt_plus_2
@@ -195,15 +195,15 @@ log$date_time_gmt_plus_2
 # temp_vector <- as.numeric(unlist(log[,2:length(log[1,])]))
 # time_vector <- as.data.frame(rep(log$date_time_gmt_plus_2, length(log[1,])-1))
 # log_number <- rep(NA, length(temp_vector))
-# 
+#
 # log_colnames <- c(colnames(log)[-1]) # exclude the first colname, which is the date
-# 
+#
 # for (i in 1:length(log_colnames)){
 #   for (j in 1:length(log[,1])){
 #     log_number[j+(288*(i-1))] <- log_colnames[i]
 #   }
 # } # this adds the logger number to every measurement
-# 
+#
 # log <- cbind(time_vector, temp_vector, log_number)
 # colnames(log) <- c("date_time_gmt_plus_2", "temperature", "log_number")
 # rm(time_vector); rm(temp_vector); rm(log_number); rm(log_colnames)
@@ -239,9 +239,9 @@ bicycle$Route_Flag <- c(rep(NA,length(bicycle$ID)))
 
 # Check for 8 or more equal temperature Values in a row (temp_Flag)
 for(i in 1:(length(bicycle$Temp.degC)-7)){
-  if (bicycle$Temp.degC[i]==bicycle$Temp.degC[i+1] & bicycle$Temp.degC[i]==bicycle$Temp.degC[i+2] 
+  if (bicycle$Temp.degC[i]==bicycle$Temp.degC[i+1] & bicycle$Temp.degC[i]==bicycle$Temp.degC[i+2]
       & bicycle$Temp.degC[i]==bicycle$Temp.degC[i+3] & bicycle$Temp.degC[i]==bicycle$Temp.degC[i+4]
-      & bicycle$Temp.degC[i]==bicycle$Temp.degC[i+5] & bicycle$Temp.degC[i]==bicycle$Temp.degC[i+6] 
+      & bicycle$Temp.degC[i]==bicycle$Temp.degC[i+5] & bicycle$Temp.degC[i]==bicycle$Temp.degC[i+6]
       & bicycle$Temp.degC[i]==bicycle$Temp.degC[i+7]){
     bicycle$Equal_Temp_Flag[i:(i+7)]<-TRUE}
   else {bicycle$Equal_Temp_Flag[i:(i+7)]<-FALSE
@@ -301,11 +301,11 @@ bounds[1,1] <- as.numeric(bounds[1,1])-0.035; bounds[1,2] <- as.numeric(bounds[1
 bounds[2,1] <- as.numeric(bounds[2,1])-0.035; bounds[2,2] <- as.numeric(bounds[2,2])+0.035 # expand the buffer by 0.035 degrees
 
 # remove the values not within the bounds
-cws_be_2019 <- subset(cws_be_2019, cws_be_2019$lon <= bounds$max[1] & cws_be_2019$lon >= bounds$min[1] 
+cws_be_2019 <- subset(cws_be_2019, cws_be_2019$lon <= bounds$max[1] & cws_be_2019$lon >= bounds$min[1]
                     & cws_be_2019$lat <= bounds$max[2] & cws_be_2019$lat >= bounds$min[2])
 
 
-cws_be_2019_meta <- subset(cws_be_2019, lon <= bounds$max[1] & cws_be_2019$lon >= bounds$min[1] 
+cws_be_2019_meta <- subset(cws_be_2019, lon <= bounds$max[1] & cws_be_2019$lon >= bounds$min[1]
                          & cws_be_2019$lat <= bounds$max[2] & cws_be_2019$lat >= bounds$min[2])
 
 cws_be_2019_meta <- distinct(cws_be_2019_meta,cws_be_2019_meta$p_id, .keep_all = TRUE)
@@ -351,7 +351,7 @@ df_time_orig <- cws_be_2019[,c(grep(paste("_orig"), names(cws_be_2019)))]
 df_ta_int_orig <- cws_be_2019[,c(grep(paste("ta_int"), names(cws_be_2019)))]
 rownames(df_time_orig) <- cws_be_2019$time;rownames(df_ta_int_orig) <- cws_be_2019$time
 
-# 
+#
 # # for every bicycle measurement go through every timestep (48) of every
 # CWS (columns in df_time_orig) and find the minimum difference
 
@@ -393,7 +393,7 @@ cws_be_2019_bicycle_ta_int_orig <- read.csv(file = "output_reworked/0_pre_proces
 
 # convert the time_orig values to POSIX (incase they were loaded in and not calculated freshly)
 for (i in 1:length(length(cws_be_2019_bicycle_time_orig))){
-  cws_be_2019_bicycle_time_orig[,i] <- as.POSIXct(cws_be_2019_bicycle_time_orig[,i], 
+  cws_be_2019_bicycle_time_orig[,i] <- as.POSIXct(cws_be_2019_bicycle_time_orig[,i],
                                                 tz = "Europe/Berlin")
 }
 
@@ -453,7 +453,7 @@ log_bicycle <- as.data.frame(cbind(bicycle,log_bicycle)) # this is the time comb
 # cws_be_2019_bicycle_full_hour <- subset(cws_be_2019_bicycle_full_hour,
 #                             select = c(1:which(colnames(cws_be_2019_bicycle_full_hour)=="RecNo")-1)) # only select time and temperatures
 # cws_be_2019_bicycle_full_hour <- as.data.frame(cbind(bicycle, cws_be_2019_bicycle_full_hour)) # this is the time combined log and bicycle measurements
-# 
+#
 
 
 # Temporal Distance Log Matrix ------------------------------------------------
@@ -507,7 +507,7 @@ write.csv(bicycle_complete,row.names = F,
           file = paste0("output_reworked/0_pre_processing_orig/bicycle/","bicycle_complete.csv"))
 
 
-# 
+#
 # ### save log data
 write.csv(log,row.names = F,
           file = paste0("output_reworked/0_pre_processing_orig/log/","log.csv"))
@@ -516,7 +516,7 @@ write.csv(log_meta,row.names = F,
 write.csv(log_bicycle,row.names = F,
           file = paste0("output_reworked/0_pre_processing_orig/log/","log_bicycle.csv"))
 
-# 
+#
 # ### save cws data
 write.csv(cws_be_2019,row.names = F,
           file = paste0("output_reworked/0_pre_processing_orig/cws_be_2019/","cws_be_2019.csv"))
@@ -535,8 +535,8 @@ write.csv(cws_be_2019_bicycle_ta_int_orig, row.names = F,
 write.csv(cws_be_2019_bicycle, row.names = F,
           file=paste0("output_reworked/0_pre_processing_orig/cws_be_2019/","cws_be_2019_bicycle.csv"))
 
-# 
-# 
+#
+#
 # ### spatial distance and time dist
 write.csv(dist_cws_be_2019_bicycle, row.names = F,
           file=paste0("output_reworked/0_pre_processing_orig/distance/","dist_cws_be_2019_bicycle.csv"))
