@@ -17,11 +17,11 @@ plot_temp_comparison <-
 			data <- data.frame(time, log_A, log_B)
 			ggplot(data, aes(x = time, y = log_A, group = 1)) +
 				geom_line(aes(y = log_A, color = "black")) +
-				geom_line(aes(y = log_B, color = "blue")) +
+				geom_line(aes(y = log_B, color = "green")) +
 				theme_minimal() +
 				coord_cartesian(ylim = c(16, 38)) +
 			  scale_x_continuous(label = c("20:00", "01:00", "06:00", "11:00", "16:00")) +
-			  scale_colour_manual(name = "Loggerstation", values = c("black","blue"), labels = c(station_A, station_B)) +
+			  scale_colour_manual(name = "Loggerstation", values = c("black","green"), labels = c(station_A, station_B)) +
 			  geom_hline(yintercept = 20, color="red") +
 			  labs(
 					y = "Temperatur in Grad Celsius",
