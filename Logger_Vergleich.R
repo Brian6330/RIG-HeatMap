@@ -6,7 +6,7 @@ library("tidyverse")
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 loggers <- read.csv(file = "Formatted Data/log.csv", sep=";")
-time <- loggers$Time.HH
+time <- loggers$Time_HH
 
 # log_A should be the "urban" one. Title is also the filename.
 plot_temp_comparison <-
@@ -20,7 +20,8 @@ plot_temp_comparison <-
 				geom_line(aes(y = log_B, color = "green")) +
 				theme_minimal() +
 				coord_cartesian(ylim = c(16, 38)) +
-				scale_x_continuous(labels = c("20:00", "02:00", "08:00", "14:00", "20:00")) +
+				scale_x_continuous(labels = c("20:00", "02:00", "08:00", "14:00", "20:00"), 
+				                   breaks = c(20,26,32,38,44)) +
 			  scale_colour_manual(name = "Loggerstation", values = c("black","green"), labels = c(station_A, station_B)) +
 			  geom_hline(yintercept = 20, color="red") +
 			  labs(
@@ -38,7 +39,8 @@ plot_temp_comparison <-
 				geom_line(aes(y = log_C, color = "green")) +
 				theme_minimal() +
 				coord_cartesian(ylim = c(16, 38)) +
-			  scale_x_continuous(labels = c("20:00", "02:00", "08:00", "14:00", "20:00")) +
+			  scale_x_continuous(labels = c("20:00", "02:00", "08:00", "14:00", "20:00"), 
+			                     breaks = c(20,26,32,38,44)) +
 			  scale_color_manual(name = "Loggerstation", values = c("black", "blue", "green"), labels = c(station_A, station_B, station_C)) +
 			  geom_hline(yintercept = 20, color="red") +
 			  labs(
